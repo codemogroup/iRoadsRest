@@ -41,7 +41,6 @@ public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration {
     @Override
     protected String getBucketPassword() {
         return password;
-
     }
 
     @Override
