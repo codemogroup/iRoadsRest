@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 public class DataItem {
 
     @Id
-    @NotNull
     private String id;
 
     @Field
@@ -33,9 +32,6 @@ public class DataItem {
     private String imei;
 
     @Field
-    private String iemi;
-
-    @Field
     private double lat;
 
     @Field
@@ -49,6 +45,10 @@ public class DataItem {
 
     @Field
     private long time;
+
+    @Field
+    private String journeyID;
+
 
 
     public String getId() {
@@ -75,10 +75,6 @@ public class DataItem {
         return imei;
     }
 
-    public String getIemi() {
-        return iemi;
-    }
-
     public double getLat() {
         return lat;
     }
@@ -97,6 +93,10 @@ public class DataItem {
 
     public long getTime() {
         return time;
+    }
+
+    public String getJourneyID() {
+        return journeyID;
     }
 
     public void setId(String id) {
@@ -123,10 +123,6 @@ public class DataItem {
         this.imei = imei;
     }
 
-    public void setIemi(String iemi) {
-        this.iemi = iemi;
-    }
-
     public void setLat(float lat) {
         this.lat = lat;
     }
@@ -147,6 +143,9 @@ public class DataItem {
         this.time = time;
     }
 
+    public void setJourneyID(String journeyID) {
+        this.journeyID = journeyID;
+    }
 
     @Override
     public String toString() {
@@ -162,9 +161,8 @@ public class DataItem {
                 ", obdRpm=" + obdRpm +
                 ", obdSpeed=" + obdSpeed +
                 ", time=" + time +
+                ", journeyID='" + journeyID + '\'' +
                 '}';
     }
-
-
 }
 
