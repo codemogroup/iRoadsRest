@@ -66,19 +66,30 @@ public class Util {
     }
 
     public static String welcome(){
+        String welcomeHtml="<html><body>";
+        List<JsonObject> welcomeJson = getWelcomeJson();
+        for (JsonObject obj:welcomeJson) {
+            welcomeHtml+="<h2>"+obj.get("function").toString()+"</h2>";
+            welcomeHtml+="<p>"+obj.get("path").toString()+"</p>";
+        }
+        return welcomeHtml+"</body></html>";
+    }
+
+    public static  List<JsonObject> getWelcomeJson(){
 
         List<JsonObject> msg=new ArrayList<>();
 
         JsonObject metghod1=JsonObject.create().put("function","get journey IDs").put("path","/getJourneyIDs");
-        JsonObject metghod2=JsonObject.create().put("function","get data according to journey ID").put("path","/getByjourneyID?journeyID=requiredId");
-        JsonObject metghod3=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId");
-        JsonObject metghod4=JsonObject.create().put("function","get all data").put("path","/getAll");
+        JsonObject metghod2=JsonObject.create().put("function","get journey Names with ID").put("path","/getJourneyNames");
+        JsonObject metghod3=JsonObject.create().put("function","get data according to journey ID").put("path","/getByjourneyID?journeyID=requiredId");
+        JsonObject metghod4=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId");
+        JsonObject metghod5=JsonObject.create().put("function","get all data").put("path","/getAll");
 
         msg.add(metghod1);
         msg.add(metghod2);
         msg.add(metghod3);
         msg.add(metghod4);
 
-        return msg.toString();
+        return msg;
     }
 }
