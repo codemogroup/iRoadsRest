@@ -25,7 +25,7 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
 
     public List<JsonObject> getJourneyNameObjects(){
 
-        String query="select journeyID,journeyName from iroads where type='trip_names'";
+        String query="select journeyID,journeyName from iroads where type='trip_names' order by journeyName";
         return getJsonArray(query);
     }
 
