@@ -21,4 +21,9 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
     public List<JsonObject> getJourneyIDs() {
         return nonEntityClassRepository.getJourneyIds();
     }
+
+    @Override
+    public List<JsonObject> getJourneyNameObjects() {
+        return nonEntityClassRepository.getJourneyNameObjects();
+    }
 }

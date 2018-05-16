@@ -13,4 +13,6 @@ import java.util.List;
 public interface NonEntityClassDao {
 
     List<JsonObject> getJourneyIDs();
+
+    List<JsonObject> getJourneyNameObjects();
 }

@@ -37,6 +37,11 @@ public class RequestController {
         return nonEntityClassService.getJourneyIds();
     }
 
+    @RequestMapping("/getJourneyNames")
+    public String getJourneyNames(){
+        return nonEntityClassService.getJourneyNameObjects();
+    }
+
     @RequestMapping("/getByjourneyID")
     public List<DataItem> getDataItemByJourneyID(@RequestParam("journeyID") String journeyId){
         return dataItemService.getDataItemByJourneyID(journeyId);
