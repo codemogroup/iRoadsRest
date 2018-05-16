@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface NonEntityClassService {
     String getJourneyIds();
+
+    String getJourneyNameObjects();
 }

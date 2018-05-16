@@ -23,6 +23,12 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getJsonArray(query);
     }
 
+    public List<JsonObject> getJourneyNameObjects(){
+
+        String query="select journeyID,journeyName from iroads where type='trip_names'";
+        return getJsonArray(query);
+    }
+
 
 
 }

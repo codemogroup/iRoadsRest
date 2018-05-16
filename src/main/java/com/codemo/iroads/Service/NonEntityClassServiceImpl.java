@@ -21,4 +21,10 @@ public class NonEntityClassServiceImpl implements NonEntityClassService {
         List<JsonObject> journeyIDs = nonEntityClassDao.getJourneyIDs();
         return journeyIDs.toString();
     }
+
+    @Override
+    public String getJourneyNameObjects() {
+        List<JsonObject> journeyNameObjects = nonEntityClassDao.getJourneyNameObjects();
+        return journeyNameObjects.toString();
+    }
 }
