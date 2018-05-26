@@ -1,14 +1,12 @@
 package com.codemo.iroads.Service;
 
 import com.codemo.iroads.Domain.DataItem;
-import com.couchbase.client.java.document.json.JsonObject;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
-import javax.xml.crypto.Data;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by dushan on 4/24/18.
@@ -21,4 +19,6 @@ public interface DataItemService {
     List<DataItem> getDataItemByJourneyID(String journeyID);
 
     String getGraphDataByJourneyID(String journeyID);
+
+    void getCsvDataItemByJourneyID(String journeyID,HttpServletResponse response) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 }

@@ -82,13 +82,16 @@ public class Util {
         JsonObject metghod1=JsonObject.create().put("function","get journey IDs").put("path","/getJourneyIDs");
         JsonObject metghod2=JsonObject.create().put("function","get journey Names with ID").put("path","/getJourneyNames");
         JsonObject metghod3=JsonObject.create().put("function","get data according to journey ID").put("path","/getByjourneyID?journeyID=requiredId");
-        JsonObject metghod4=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId");
-        JsonObject metghod5=JsonObject.create().put("function","get all data").put("path","/getAll");
+        JsonObject metghod4=JsonObject.create().put("function","get data according to journey ID as a Csv").put("path","/getCsvByjourneyID?journeyID=requiredId");
+        JsonObject metghod5=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId");
+        JsonObject metghod6=JsonObject.create().put("function","get all data").put("path","/getAll");
 
         msg.add(metghod1);
         msg.add(metghod2);
         msg.add(metghod3);
         msg.add(metghod4);
+        msg.add(metghod5);
+        msg.add(metghod6);
 
         return msg;
     }

@@ -2,16 +2,16 @@ package com.codemo.iroads.Service;
 
 import com.codemo.iroads.Dao.DataItemDao;
 import com.codemo.iroads.Domain.DataItem;
+import com.codemo.iroads.Util.CSV_Writer;
 import com.codemo.iroads.Util.Util;
 import com.couchbase.client.java.document.json.JsonObject;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by dushan on 4/25/18.
@@ -41,6 +41,16 @@ public class DataItemServiceImpl implements DataItemService {
 
         List<JsonObject> graphData= Util.convertDataItemToGraphAxes(dataItems);
         return graphData.toString();
+    }
+
+    @Override
+    public void getCsvDataItemByJourneyID(String journeyID,HttpServletResponse response) throws IOException {
+        List<DataItem> dataItems= dataItemDao.getDataItemByJourneyID(journeyID);
+        String fileName=DateTime.now()+"_"+journeyID+".csv";
+        response.setContentType ("application/csv");
+        response.setHeader ("Content-Disposition",
+                "attachment; filename="+fileName);
+        CSV_Writer.writeToCsv(response.getWriter(),dataItems);
     }
 
 
