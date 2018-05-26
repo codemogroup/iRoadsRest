@@ -49,6 +49,8 @@ public class DataItem {
     @Field
     private String journeyID;
 
+    @Field
+    private String type;
 
 
     public String getId() {
@@ -99,6 +101,10 @@ public class DataItem {
         return journeyID;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -147,22 +153,8 @@ public class DataItem {
         this.journeyID = journeyID;
     }
 
-    @Override
-    public String toString() {
-        return "DataItem{" +
-                "id='" + id + '\'' +
-                ", acceX=" + acceX +
-                ", acceY=" + acceY +
-                ", acceZ=" + acceZ +
-                ", count=" + count +
-                ", imei='" + imei + '\'' +
-                ", lat=" + lat +
-                ", lon=" + lon +
-                ", obdRpm=" + obdRpm +
-                ", obdSpeed=" + obdSpeed +
-                ", time=" + time +
-                ", journeyID='" + journeyID + '\'' +
-                '}';
+    public void setType(String type) {
+        this.type = type;
     }
 }
 
