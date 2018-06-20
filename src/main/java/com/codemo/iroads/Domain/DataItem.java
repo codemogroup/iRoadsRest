@@ -50,7 +50,7 @@ public class DataItem {
     private String journeyID;
 
     @Field
-    private String type;
+    private String dataType;
 
 
     public String getId() {
@@ -101,8 +101,8 @@ public class DataItem {
         return journeyID;
     }
 
-    public String getType() {
-        return type;
+    public String getDataType() {
+        return dataType;
     }
 
     public void setId(String id) {
@@ -153,8 +153,8 @@ public class DataItem {
         this.journeyID = journeyID;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
     }
 }
 
