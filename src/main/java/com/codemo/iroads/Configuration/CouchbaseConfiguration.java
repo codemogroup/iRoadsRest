@@ -45,7 +45,7 @@ public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration {
 
     @Override
     protected CouchbaseEnvironment getEnvironment() {
-        DefaultCouchbaseEnvironment.builder().connectTimeout(20000);
+        DefaultCouchbaseEnvironment.builder().connectTimeout(15000);
         return super.getEnvironment();
     }
 

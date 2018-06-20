@@ -1,5 +1,6 @@
 package com.codemo.iroads.Service;
 
+import com.codemo.iroads.Algorithms.SignalProcessor;
 import com.codemo.iroads.Dao.DataItemDao;
 import com.codemo.iroads.Domain.DataItem;
 import com.codemo.iroads.Util.CSV_Writer;
@@ -51,6 +52,35 @@ public class DataItemServiceImpl implements DataItemService {
         response.setHeader ("Content-Disposition",
                 "attachment; filename="+fileName);
         CSV_Writer.writeToCsv(response.getWriter(),dataItems);
+    }
+
+    @Override
+    public List<DataItem> getAverageFilterdData(String journeyID) {
+        List<DataItem> dataSet = dataItemDao.getDataItemByJourneyID(journeyID);
+        List<DataItem> averageDataSet = null;
+        SignalProcessor xProcessor = new SignalProcessor();
+        SignalProcessor yProcessor = new SignalProcessor();
+        SignalProcessor zProcessor = new SignalProcessor();
+        for (int i = 0; i < dataSet.size(); i++){
+            DataItem row = dataSet.get(i);
+            DataItem averageRow = new DataItem();
+            averageRow.setAcceX((float) xProcessor.averageFilter(row.getAcceX()));
+            averageRow.setAcceY((float) yProcessor.averageFilter(row.getAcceY()));
+            averageRow.setAcceZ((float) zProcessor.averageFilter(row.getAcceZ()));
+            averageRow.setTime(row.getTime());
+            averageRow.setCount(row.getCount());
+            averageRow.setDataType(row.getDataType());
+            averageRow.setId(row.getId());
+            averageRow.setImei(row.getImei());
+            averageRow.setJourneyID(row.getJourneyID());
+            averageRow.setLat((float) row.getLat());
+            averageRow.setLon((float) row.getLon());
+            averageRow.setObdRpm((float) row.getObdRpm());
+            averageRow.setObdSpeed((float) row.getObdSpeed());
+            averageDataSet.add(averageRow);
+        }
+
+        return averageDataSet;
     }
 
 
