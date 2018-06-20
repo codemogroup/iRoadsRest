@@ -17,10 +17,10 @@ public interface DataItemRepository extends CouchbaseRepository<DataItem, String
 
     Optional<DataItem> findById(String id);
 
-    @Query("#{#n1ql.selectEntity} where type ='data_item'")
+    @Query("#{#n1ql.selectEntity} where dataType ='data_item'")
     List<DataItem> getAll();
 
-    @Query("#{#n1ql.selectEntity} where type ='data_item' and journeyID= $1 order by time")
+    @Query("#{#n1ql.selectEntity} where dataType ='data_item' and journeyID= $1 order by time")
     List<DataItem> getDataItemByJourneyID(String journeyID);
 
 }
