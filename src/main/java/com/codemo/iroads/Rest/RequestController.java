@@ -49,6 +49,11 @@ public class RequestController {
         return dataItemService.getDataItemByJourneyID(journeyID);
     }
 
+    @RequestMapping("/getAverageByjourneyID")
+    public List<DataItem> getDataAverageByJourneyID(@RequestParam("journeyID") String journeyID){
+        return dataItemService.getAverageFilterdData(journeyID);
+    }
+
     @RequestMapping(value="/getCsvByjourneyID" ,produces = "text/csv")
     public void getCsvDataItemByJourneyID(@RequestParam("journeyID") String journeyID, HttpServletResponse response) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
         dataItemService.getCsvDataItemByJourneyID(journeyID,response);
