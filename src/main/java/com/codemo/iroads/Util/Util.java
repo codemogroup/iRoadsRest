@@ -61,7 +61,7 @@ public class Util {
         graphData.add(accelerationZObject_raw);
         graphData.add(speedObj);
 
-//         for (DataItem dataItem:dataItems) {
+        for (DataItem dataItem:dataItems) {
 //             arrayX.add(JsonObject.create()
 //                     .put("x",dataItem.getTime()-zerothTime)
 //                     .put("y",dataItem.getAcceX())
