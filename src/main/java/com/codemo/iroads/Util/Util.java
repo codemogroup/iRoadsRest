@@ -46,10 +46,10 @@ public class Util {
         JsonArray arrayZ_raw=JsonArray.create();
         accelerationZObject_raw.put("values",arrayZ_raw);
 
-        JsonObject speedObj=JsonObject.create();
-        speedObj.put("key","Speed");
-        JsonArray speed=JsonArray.create();
-        accelerationZObject_raw.put("values",speed);
+//         JsonObject speedObj=JsonObject.create();
+//         speedObj.put("key","Speed");
+//         JsonArray speed=JsonArray.create();
+//         accelerationZObject_raw.put("values",speed);
 
 
         List<JsonObject> graphData=new ArrayList<>();
@@ -112,13 +112,13 @@ public class Util {
             );
 
 
-            speed.add(JsonObject.create()
-                            .put("x",dataItem.getTime()-zerothTime)
-                            .put("y",dataItem.getGpsSpeed())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
-            );
+//             speed.add(JsonObject.create()
+//                             .put("x",dataItem.getTime()-zerothTime)
+//                             .put("y",dataItem.getGpsSpeed())
+// //                    .put("time",dataItem.getTime())
+// //                    .put("gps",JsonObject.create()
+// //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+//             );
         }
 
         return graphData;
