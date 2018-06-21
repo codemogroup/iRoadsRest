@@ -59,7 +59,7 @@ public class Util {
         graphData.add(accelerationXObject_raw);
         graphData.add(accelerationYObject_raw);
         graphData.add(accelerationZObject_raw);
-        graphData.add(speedObj);
+//         graphData.add(speedObj);
 
         for (DataItem dataItem:dataItems) {
 //             arrayX.add(JsonObject.create()
