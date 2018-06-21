@@ -16,20 +16,20 @@ public class Util {
 
         long zerothTime=dataItems.get(0).getTime();
 
-        JsonObject accelerationXObject=JsonObject.create();
-        accelerationXObject.put("key","Acceleration X");
-        JsonArray arrayX=JsonArray.create();
-        accelerationXObject.put("values",arrayX);
+//         JsonObject accelerationXObject=JsonObject.create();
+//         accelerationXObject.put("key","Acceleration X");
+//         JsonArray arrayX=JsonArray.create();
+//         accelerationXObject.put("values",arrayX);
 
-        JsonObject accelerationYObject=JsonObject.create();
-        accelerationYObject.put("key","Acceleration Y");
-        JsonArray arrayY=JsonArray.create();
-        accelerationYObject.put("values",arrayY);
+//         JsonObject accelerationYObject=JsonObject.create();
+//         accelerationYObject.put("key","Acceleration Y");
+//         JsonArray arrayY=JsonArray.create();
+//         accelerationYObject.put("values",arrayY);
 
-        JsonObject accelerationZObject=JsonObject.create();
-        accelerationZObject.put("key","Acceleration Z");
-        JsonArray arrayZ=JsonArray.create();
-        accelerationZObject.put("values",arrayZ);
+//         JsonObject accelerationZObject=JsonObject.create();
+//         accelerationZObject.put("key","Acceleration Z");
+//         JsonArray arrayZ=JsonArray.create();
+//         accelerationZObject.put("values",arrayZ);
 
         JsonObject accelerationXObject_raw=JsonObject.create();
         accelerationXObject_raw.put("key","Acceleration X raw");
@@ -53,38 +53,38 @@ public class Util {
 
 
         List<JsonObject> graphData=new ArrayList<>();
-        graphData.add(accelerationXObject);
-        graphData.add(accelerationYObject);
-        graphData.add(accelerationZObject);
+//         graphData.add(accelerationXObject);
+//         graphData.add(accelerationYObject);
+//         graphData.add(accelerationZObject);
         graphData.add(accelerationXObject_raw);
         graphData.add(accelerationYObject_raw);
         graphData.add(accelerationZObject_raw);
         graphData.add(speedObj);
 
-        for (DataItem dataItem:dataItems) {
-            arrayX.add(JsonObject.create()
-                    .put("x",dataItem.getTime()-zerothTime)
-                    .put("y",dataItem.getAcceX())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
-            );
+//         for (DataItem dataItem:dataItems) {
+//             arrayX.add(JsonObject.create()
+//                     .put("x",dataItem.getTime()-zerothTime)
+//                     .put("y",dataItem.getAcceX())
+// //                    .put("time",dataItem.getTime())
+// //                    .put("gps",JsonObject.create()
+// //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+//             );
 
-            arrayY.add(JsonObject.create()
-                    .put("x",dataItem.getTime()-zerothTime)
-                    .put("y",dataItem.getAcceY())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
-            );
+//             arrayY.add(JsonObject.create()
+//                     .put("x",dataItem.getTime()-zerothTime)
+//                     .put("y",dataItem.getAcceY())
+// //                    .put("time",dataItem.getTime())
+// //                    .put("gps",JsonObject.create()
+// //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+//             );
 
-            arrayZ.add(JsonObject.create()
-                    .put("x",dataItem.getTime()-zerothTime)
-                    .put("y",dataItem.getAcceZ())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
-            );
+//             arrayZ.add(JsonObject.create()
+//                     .put("x",dataItem.getTime()-zerothTime)
+//                     .put("y",dataItem.getAcceZ())
+// //                    .put("time",dataItem.getTime())
+// //                    .put("gps",JsonObject.create()
+// //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+//             );
 
             arrayX_raw.add(JsonObject.create()
                             .put("x",dataItem.getTime()-zerothTime)
