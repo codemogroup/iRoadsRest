@@ -31,10 +31,35 @@ public class Util {
         JsonArray arrayZ=JsonArray.create();
         accelerationZObject.put("values",arrayZ);
 
+        JsonObject accelerationXObject_raw=JsonObject.create();
+        accelerationXObject_raw.put("key","Acceleration X raw");
+        JsonArray arrayX_raw=JsonArray.create();
+        accelerationXObject_raw.put("values",arrayX_raw);
+
+        JsonObject accelerationYObject_raw=JsonObject.create();
+        accelerationYObject_raw.put("key","Acceleration Y raw");
+        JsonArray arrayY_raw=JsonArray.create();
+        accelerationYObject_raw.put("values",arrayY_raw);
+
+        JsonObject accelerationZObject_raw=JsonObject.create();
+        accelerationZObject_raw.put("key","Acceleration Z raw");
+        JsonArray arrayZ_raw=JsonArray.create();
+        accelerationZObject_raw.put("values",arrayZ_raw);
+
+        JsonObject speedObj=JsonObject.create();
+        speedObj.put("key","Speed");
+        JsonArray speed=JsonArray.create();
+        accelerationZObject_raw.put("values",speed);
+
+
         List<JsonObject> graphData=new ArrayList<>();
         graphData.add(accelerationXObject);
         graphData.add(accelerationYObject);
         graphData.add(accelerationZObject);
+        graphData.add(accelerationXObject_raw);
+        graphData.add(accelerationYObject_raw);
+        graphData.add(accelerationZObject_raw);
+        graphData.add(speedObj);
 
         for (DataItem dataItem:dataItems) {
             arrayX.add(JsonObject.create()
@@ -56,6 +81,40 @@ public class Util {
             arrayZ.add(JsonObject.create()
                     .put("x",dataItem.getTime()-zerothTime)
                     .put("y",dataItem.getAcceZ())
+//                    .put("time",dataItem.getTime())
+//                    .put("gps",JsonObject.create()
+//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+            );
+
+            arrayX_raw.add(JsonObject.create()
+                            .put("x",dataItem.getTime()-zerothTime)
+                            .put("y",dataItem.getAcceX_raw())
+//                    .put("time",dataItem.getTime())
+//                    .put("gps",JsonObject.create()
+//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+            );
+
+            arrayY_raw.add(JsonObject.create()
+                            .put("x",dataItem.getTime()-zerothTime)
+                            .put("y",dataItem.getAcceY_raw())
+//                    .put("time",dataItem.getTime())
+//                    .put("gps",JsonObject.create()
+//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+            );
+
+
+            arrayZ_raw.add(JsonObject.create()
+                            .put("x",dataItem.getTime()-zerothTime)
+                            .put("y",dataItem.getAcceZ_raw())
+//                    .put("time",dataItem.getTime())
+//                    .put("gps",JsonObject.create()
+//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
+            );
+
+
+            speed.add(JsonObject.create()
+                            .put("x",dataItem.getTime()-zerothTime)
+                            .put("y",dataItem.getGpsSpeed())
 //                    .put("time",dataItem.getTime())
 //                    .put("gps",JsonObject.create()
 //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))

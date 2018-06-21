@@ -26,6 +26,18 @@ public class DataItem {
     private double acceZ;
 
     @Field
+    private double acceX_raw;
+
+    @Field
+    private double acceY_raw;
+
+    @Field
+    private double acceZ_raw;
+
+    @Field
+    private double gpsSpeed;
+
+    @Field
     private long count;
 
     @Field
@@ -51,6 +63,8 @@ public class DataItem {
 
     @Field
     private String dataType;
+
+
 
 
     public String getId() {
@@ -155,6 +169,39 @@ public class DataItem {
 
     public void setDataType(String dataType) {
         this.dataType = dataType;
+    }
+
+
+    public double getAcceX_raw() {
+        return acceX_raw;
+    }
+
+    public void setAcceX_raw(double acceX_raw) {
+        this.acceX_raw = acceX_raw;
+    }
+
+    public double getAcceY_raw() {
+        return acceY_raw;
+    }
+
+    public void setAcceY_raw(double acceY_raw) {
+        this.acceY_raw = acceY_raw;
+    }
+
+    public double getAcceZ_raw() {
+        return acceZ_raw;
+    }
+
+    public void setAcceZ_raw(double acceZ_raw) {
+        this.acceZ_raw = acceZ_raw;
+    }
+
+    public double getGpsSpeed() {
+        return gpsSpeed;
+    }
+
+    public void setGpsSpeed(double gpsSpeed) {
+        this.gpsSpeed = gpsSpeed;
     }
 }
 
