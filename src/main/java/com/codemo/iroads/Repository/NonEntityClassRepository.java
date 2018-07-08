@@ -25,7 +25,7 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
 
 
     public List<JsonObject> getLocationsByjourneyID(String journeyID){
-        String query="select lat,lon from iroads where dataType='data_item' and journeyID='"+journeyID+"'";
+        String query="select lat,lon from iroads where dataType='data_item' and journeyID='"+journeyID+"' order by time";
         return getJsonArray(query);
     }
 
