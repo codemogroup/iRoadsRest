@@ -1,6 +1,5 @@
 package com.codemo.iroads.Dao;
 
-import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +14,6 @@ public interface NonEntityClassDao {
     List<JsonObject> getJourneyIDs();
 
     List<JsonObject> getJourneyNameObjects();
+
+    List<JsonObject> getLocationsByjourneyID(String journeyID);
 }
