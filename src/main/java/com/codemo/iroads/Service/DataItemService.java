@@ -23,4 +23,6 @@ public interface DataItemService {
     void getCsvDataItemByJourneyID(String journeyID,HttpServletResponse response) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 
     List<DataItem> getAverageFilterdData(String journeyID);
+
+
 }

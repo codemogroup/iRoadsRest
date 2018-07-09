@@ -49,6 +49,11 @@ public class RequestController {
         return dataItemService.getDataItemByJourneyID(journeyID);
     }
 
+    @RequestMapping("/getLocationsByjourneyID")
+    public String getLocationsByjourneyID(@RequestParam("journeyID") String journeyID){
+        return nonEntityClassService.getLocationsByjourneyID(journeyID);
+    }
+
     @RequestMapping("/getAverageByjourneyID")
     public List<DataItem> getDataAverageByJourneyID(@RequestParam("journeyID") String journeyID){
         return dataItemService.getAverageFilterdData(journeyID);

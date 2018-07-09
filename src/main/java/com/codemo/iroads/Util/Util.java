@@ -4,6 +4,7 @@ import com.codemo.iroads.Domain.DataItem;
 import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 
+import javax.swing.text.Style;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,13 +126,36 @@ public class Util {
     }
 
     public static String welcome(){
-        String welcomeHtml="<html><body>";
+
+
+        String centerCss="style=\""+
+                "margin: auto;\n" +
+                "    width: 50%;\n" +
+                "    padding: 10px;" +
+                "\"";
+
+        String cellTitleCss="style=\""+
+                "padding: 20px"+
+                "\"";
+        String cellCss="style=\""+
+                "padding: 20px"+
+                "\"";
+
+        String welcomeHtml="<html><body><div "+centerCss+"><table border=\"2\">";
         List<JsonObject> welcomeJson = getWelcomeJson();
+
+        welcomeHtml+="<tr>\n" +
+                "    <th>Function</th>\n" +
+                "    <th>Path</th>\n" +
+                "  </tr>";
+
         for (JsonObject obj:welcomeJson) {
-            welcomeHtml+="<h2>"+obj.get("function").toString()+"</h2>";
-            welcomeHtml+="<p>"+obj.get("path").toString()+"</p>";
+            welcomeHtml+="<tr>";
+                welcomeHtml+="<td "+cellTitleCss+"><b>"+obj.get("function").toString()+"</b></td>";
+                welcomeHtml+="<td "+cellCss+">"+obj.get("path").toString()+"</td>";
+            welcomeHtml+="</tr>";
         }
-        return welcomeHtml+"</body></html>";
+        return welcomeHtml+"</table></div></body></html>";
     }
 
     public static  List<JsonObject> getWelcomeJson(){
@@ -143,7 +167,9 @@ public class Util {
         JsonObject metghod3=JsonObject.create().put("function","get data according to journey ID").put("path","/getByjourneyID?journeyID=requiredId");
         JsonObject metghod4=JsonObject.create().put("function","get data according to journey ID as a Csv").put("path","/getCsvByjourneyID?journeyID=requiredId");
         JsonObject metghod5=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId");
-        JsonObject metghod6=JsonObject.create().put("function","get all data").put("path","/getAll");
+        JsonObject metghod6=JsonObject.create().put("function","get gps path according to journey ID").put("path","/getLocationsByjourneyID?journeyID=requiredId");
+        JsonObject metghod7=JsonObject.create().put("function","get all data").put("path","/getAll");
+        JsonObject metghod8=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
 
         msg.add(metghod1);
         msg.add(metghod2);
@@ -151,6 +177,8 @@ public class Util {
         msg.add(metghod4);
         msg.add(metghod5);
         msg.add(metghod6);
+        msg.add(metghod7);
+        msg.add(metghod8);
 
         return msg;
     }

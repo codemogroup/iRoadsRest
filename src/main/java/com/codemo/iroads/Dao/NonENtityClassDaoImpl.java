@@ -1,7 +1,6 @@
 package com.codemo.iroads.Dao;
 
 import com.codemo.iroads.Repository.NonEntityClassRepository;
-import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,5 +24,10 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
     @Override
     public List<JsonObject> getJourneyNameObjects() {
         return nonEntityClassRepository.getJourneyNameObjects();
+    }
+
+    @Override
+    public List<JsonObject> getLocationsByjourneyID(String journeyID) {
+        return nonEntityClassRepository.getLocationsByjourneyID(journeyID);
     }
 }

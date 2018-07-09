@@ -11,4 +11,6 @@ public interface NonEntityClassService {
     String getJourneyIds();
 
     String getJourneyNameObjects();
+
+    String getLocationsByjourneyID(String journeyID);
 }
