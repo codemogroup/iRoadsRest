@@ -117,52 +117,52 @@ public class Util {
             );
 
 
-                array_speed.add(JsonObject.create()
-                                 .put("x",dataItem.getTime()-zerothTime)
-                                 .put("y",dataItem.getGpsSpeed())
-                );
-
-
-
-                array_magnetX.add(JsonObject.create()
-                        .put("x",dataItem.getTime()-zerothTime)
-                        .put("y",dataItem.getMagnetX())
-                );
-
-
-
-                array_magnetY.add(JsonObject.create()
-                        .put("x", dataItem.getTime() - zerothTime)
-                        .put("y", dataItem.getMagnetY())
-                );
-
-
-
-                array_magnetZ.add(JsonObject.create()
-                        .put("x", dataItem.getTime() - zerothTime)
-                        .put("y", dataItem.getMagnetZ())
-                );
-
-
-
-                array_gyroX.add(JsonObject.create()
-                        .put("x", dataItem.getTime() - zerothTime)
-                        .put("y", dataItem.getGyroX())
-                );
-
-
-
-                array_gyroY.add(JsonObject.create()
-                        .put("x", dataItem.getTime() - zerothTime)
-                        .put("y", dataItem.getGyroY())
-                );
-
-
-
-                array_gyroZ.add(JsonObject.create()
-                        .put("x", dataItem.getTime() - zerothTime)
-                        .put("y", dataItem.getGyroZ())
-                );
+//                array_speed.add(JsonObject.create()
+//                                 .put("x",dataItem.getTime()-zerothTime)
+//                                 .put("y",dataItem.getGpsSpeed())
+//                );
+//
+//
+//
+//                array_magnetX.add(JsonObject.create()
+//                        .put("x",dataItem.getTime()-zerothTime)
+//                        .put("y",dataItem.getMagnetX())
+//                );
+//
+//
+//
+//                array_magnetY.add(JsonObject.create()
+//                        .put("x", dataItem.getTime() - zerothTime)
+//                        .put("y", dataItem.getMagnetY())
+//                );
+//
+//
+//
+//                array_magnetZ.add(JsonObject.create()
+//                        .put("x", dataItem.getTime() - zerothTime)
+//                        .put("y", dataItem.getMagnetZ())
+//                );
+//
+//
+//
+//                array_gyroX.add(JsonObject.create()
+//                        .put("x", dataItem.getTime() - zerothTime)
+//                        .put("y", dataItem.getGyroX())
+//                );
+//
+//
+//
+//                array_gyroY.add(JsonObject.create()
+//                        .put("x", dataItem.getTime() - zerothTime)
+//                        .put("y", dataItem.getGyroY())
+//                );
+//
+//
+//
+//                array_gyroZ.add(JsonObject.create()
+//                        .put("x", dataItem.getTime() - zerothTime)
+//                        .put("y", dataItem.getGyroZ())
+//                );
 
         }
 
@@ -177,21 +177,21 @@ public class Util {
         graphData.add(accelerationYObject_raw);
         graphData.add(accelerationZObject_raw);
 
-        if (array_speed.size()>0) {
-            graphData.add(speedObj);
-        }
+//        if (array_speed.size()>0) {
+//            graphData.add(speedObj);
+//        }
 
-        if (array_magnetX.size()>0) {
-            graphData.add(magnetXobject);
-            graphData.add(magnetYobject);
-            graphData.add(magnetZobject);
-        }
-
-        if (array_gyroX.size()>0) {
-            graphData.add(gyroXobject);
-            graphData.add(gyroYobject);
-            graphData.add(gyroZobject);
-        }
+//        if (array_magnetX.size()>0) {
+//            graphData.add(magnetXobject);
+//            graphData.add(magnetYobject);
+//            graphData.add(magnetZobject);
+//        }
+//
+//        if (array_gyroX.size()>0) {
+//            graphData.add(gyroXobject);
+//            graphData.add(gyroYobject);
+//            graphData.add(gyroZobject);
+//        }
 
 
         return graphData;
