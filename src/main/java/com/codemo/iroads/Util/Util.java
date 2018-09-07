@@ -48,79 +48,152 @@ public class Util {
         accelerationZObject_raw.put("values",arrayZ_raw);
 
         JsonObject speedObj=JsonObject.create();
-        speedObj.put("key","Speed");
-        JsonArray speed=JsonArray.create();
-//         accelerationZObject_raw.put("values",speed);
+        speedObj.put("key","GPS Speed");
+        JsonArray array_speed=JsonArray.create();
+        accelerationZObject_raw.put("values",array_speed);
+
+        JsonObject magnetXobject=new JsonObject.create();
+        magnetXobject.put("key", "Magneto X")
+        JsonArray array_magnetX=JsonArray.create();
+        magnetXobject.put("values",array_magnetX);
+
+        JsonObject magnetYobject=new JsonObject.create();
+        magnetYobject.put("key", "Magneto Y")
+        JsonArray array_magnetY=JsonArray.create();
+        magnetYobject.put("values",array_magnetY);
+
+        JsonObject magnetZobject=new JsonObject.create();
+        magnetZobject.put("key", "Magneto Z")
+        JsonArray array_magnetZ=JsonArray.create();
+        magnetZobject.put("values",array_magnetZ);
+
+        JsonObject gyroXobject=new JsonObject.create();
+        gyroXobject.put("key", "Gyro X")
+        JsonArray array_gyroX=JsonArray.create();
+        gyroXobject.put("values",array_gyroX);
+
+        JsonObject gyroYobject=new JsonObject.create();
+        gyroYobject.put("key", "Gyro Y")
+        JsonArray array_gyroY=JsonArray.create();
+        gyroYobject.put("values",array_gyroY);
+
+        JsonObject gyroZobject=new JsonObject.create();
+        gyroZobject.put("key", "Gyro Z")
+        JsonArray array_gyroZ=JsonArray.create();
+        gyroZobject.put("values",array_gyroZ);
 
 
-        List<JsonObject> graphData=new ArrayList<>();
-        graphData.add(accelerationXObject);
-        graphData.add(accelerationYObject);
-        graphData.add(accelerationZObject);
-        graphData.add(accelerationXObject_raw);
-        graphData.add(accelerationYObject_raw);
-        graphData.add(accelerationZObject_raw);
-//         graphData.add(speedObj);
+
 
         for (DataItem dataItem:dataItems) {
             arrayX.add(JsonObject.create()
                     .put("x",dataItem.getTime()-zerothTime)
                     .put("y",dataItem.getAcceX())
-// //                    .put("time",dataItem.getTime())
-// //                    .put("gps",JsonObject.create()
-// //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
             );
 
             arrayY.add(JsonObject.create()
                     .put("x",dataItem.getTime()-zerothTime)
                     .put("y",dataItem.getAcceY())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
             );
 
             arrayZ.add(JsonObject.create()
                     .put("x",dataItem.getTime()-zerothTime)
                     .put("y",dataItem.getAcceZ())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
             );
 
             arrayX_raw.add(JsonObject.create()
                             .put("x",dataItem.getTime()-zerothTime)
                             .put("y",dataItem.getAcceX_raw())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
             );
 
             arrayY_raw.add(JsonObject.create()
                             .put("x",dataItem.getTime()-zerothTime)
                             .put("y",dataItem.getAcceY_raw())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
             );
 
 
             arrayZ_raw.add(JsonObject.create()
                             .put("x",dataItem.getTime()-zerothTime)
                             .put("y",dataItem.getAcceZ_raw())
-//                    .put("time",dataItem.getTime())
-//                    .put("gps",JsonObject.create()
-//                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
             );
 
+            if (dataItem.getGpsSpeed()!=null) {
+                array_speed.add(JsonObject.create()
+                                 .put("x",dataItem.getTime()-zerothTime)
+                                 .put("y",dataItem.getGpsSpeed())
+                );
+            }
 
-//             speed.add(JsonObject.create()
-//                             .put("x",dataItem.getTime()-zerothTime)
-//                             .put("y",dataItem.getGpsSpeed())
-// //                    .put("time",dataItem.getTime())
-// //                    .put("gps",JsonObject.create()
-// //                            .put("lat",dataItem.getLat()).put("lon",dataItem.getLon()))
-//             );
+            if (dataItem.getMagnetX()!=null){
+                array_magnetX.add(JsonObject.create()
+                        .put("x",dataItem.getTime()-zerothTime)
+                        .put("y",dataItem.getMagnetX())
+                );
+            }
+
+            if (dataItem.getMagnetY()!=null) {
+                array_magnetY.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getMagnetY())
+                );
+            }
+
+            if (dataItem.getMagnetZ()!=null) {
+                array_magnetZ.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getMagnetZ())
+                );
+            }
+
+            if (dataItem.getGyroX()!=null) {
+                array_gyroX.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getGyroX())
+                );
+            }
+
+            if (dataItem.getGyroY()!=null) {
+                array_gyroY.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getGyroY())
+                );
+            }
+
+            if (dataItem.getGyroZ()!=null) {
+                array_gyroZ.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getGyroZ())
+                );
+            }
         }
+
+
+
+        List<JsonObject> graphData=new ArrayList<>();
+
+        graphData.add(accelerationXObject);
+        graphData.add(accelerationYObject);
+        graphData.add(accelerationZObject);
+        graphData.add(accelerationXObject_raw);
+        graphData.add(accelerationYObject_raw);
+        graphData.add(accelerationZObject_raw);
+
+        if (array_speed.size()>0) {
+            graphData.add(speedObj);
+        }
+
+        if (array_magnetX.size()>0) {
+            graphData.add(magnetXobject);
+            graphData.add(magnetYobject);
+            graphData.add(magnetZobject);
+        }
+
+        if (array_gyroX.size()>0) {
+            graphData.add(gyroXobject);
+            graphData.add(gyroYobject);
+            graphData.add(gyroZobject);
+        }
+
 
         return graphData;
     }
