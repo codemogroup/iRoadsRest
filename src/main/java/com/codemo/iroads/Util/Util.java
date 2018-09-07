@@ -116,54 +116,54 @@ public class Util {
                             .put("y",dataItem.getAcceZ_raw())
             );
 
-            if (dataItem.getGpsSpeed()!=null) {
+
                 array_speed.add(JsonObject.create()
                                  .put("x",dataItem.getTime()-zerothTime)
                                  .put("y",dataItem.getGpsSpeed())
                 );
-            }
 
-            if (dataItem.getMagnetX()!=null){
+
+
                 array_magnetX.add(JsonObject.create()
                         .put("x",dataItem.getTime()-zerothTime)
                         .put("y",dataItem.getMagnetX())
                 );
-            }
 
-            if (dataItem.getMagnetY()!=null) {
+
+
                 array_magnetY.add(JsonObject.create()
                         .put("x", dataItem.getTime() - zerothTime)
                         .put("y", dataItem.getMagnetY())
                 );
-            }
 
-            if (dataItem.getMagnetZ()!=null) {
+
+
                 array_magnetZ.add(JsonObject.create()
                         .put("x", dataItem.getTime() - zerothTime)
                         .put("y", dataItem.getMagnetZ())
                 );
-            }
 
-            if (dataItem.getGyroX()!=null) {
+
+
                 array_gyroX.add(JsonObject.create()
                         .put("x", dataItem.getTime() - zerothTime)
                         .put("y", dataItem.getGyroX())
                 );
-            }
 
-            if (dataItem.getGyroY()!=null) {
+
+
                 array_gyroY.add(JsonObject.create()
                         .put("x", dataItem.getTime() - zerothTime)
                         .put("y", dataItem.getGyroY())
                 );
-            }
 
-            if (dataItem.getGyroZ()!=null) {
+
+
                 array_gyroZ.add(JsonObject.create()
                         .put("x", dataItem.getTime() - zerothTime)
                         .put("y", dataItem.getGyroZ())
                 );
-            }
+
         }
 
 
