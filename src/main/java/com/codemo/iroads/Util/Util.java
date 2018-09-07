@@ -52,32 +52,32 @@ public class Util {
         JsonArray array_speed=JsonArray.create();
         accelerationZObject_raw.put("values",array_speed);
 
-        JsonObject magnetXobject=new JsonObject.create();
+        JsonObject magnetXobject=JsonObject.create();
         magnetXobject.put("key", "Magneto X");
         JsonArray array_magnetX=JsonArray.create();
         magnetXobject.put("values",array_magnetX);
 
-        JsonObject magnetYobject=new JsonObject.create();
+        JsonObject magnetYobject=JsonObject.create();
         magnetYobject.put("key", "Magneto Y");
         JsonArray array_magnetY=JsonArray.create();
         magnetYobject.put("values",array_magnetY);
 
-        JsonObject magnetZobject=new JsonObject.create();
+        JsonObject magnetZobject=JsonObject.create();
         magnetZobject.put("key", "Magneto Z");
         JsonArray array_magnetZ=JsonArray.create();
         magnetZobject.put("values",array_magnetZ);
 
-        JsonObject gyroXobject=new JsonObject.create();
+        JsonObject gyroXobject=JsonObject.create();
         gyroXobject.put("key", "Gyro X");
         JsonArray array_gyroX=JsonArray.create();
         gyroXobject.put("values",array_gyroX);
 
-        JsonObject gyroYobject=new JsonObject.create();
+        JsonObject gyroYobject=JsonObject.create();
         gyroYobject.put("key", "Gyro Y");
         JsonArray array_gyroY=JsonArray.create();
         gyroYobject.put("values",array_gyroY);
 
-        JsonObject gyroZobject=new JsonObject.create();
+        JsonObject gyroZobject=JsonObject.create();
         gyroZobject.put("key", "Gyro Z");
         JsonArray array_gyroZ=JsonArray.create();
         gyroZobject.put("values",array_gyroZ);
