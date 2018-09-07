@@ -35,6 +35,25 @@ public class DataItem {
     private double acceZ_raw;
 
     @Field
+    private double magnetX;
+
+    @Field
+    private double magnetY;
+
+    @Field
+    private double magnetZ;
+
+    @Field
+    private double gyroX;
+
+    @Field
+    private double gyroY;
+
+    @Field
+    private double gyroZ;
+
+
+    @Field
     private double gpsSpeed;
 
     @Field
@@ -63,8 +82,6 @@ public class DataItem {
 
     @Field
     private String dataType;
-
-
 
 
     public String getId() {
@@ -171,7 +188,6 @@ public class DataItem {
         this.dataType = dataType;
     }
 
-
     public double getAcceX_raw() {
         return acceX_raw;
     }
@@ -194,6 +210,54 @@ public class DataItem {
 
     public void setAcceZ_raw(double acceZ_raw) {
         this.acceZ_raw = acceZ_raw;
+    }
+
+    public double getMagnetX() {
+        return magnetX;
+    }
+
+    public void setMagnetX(double magnetX) {
+        this.magnetX = magnetX;
+    }
+
+    public double getMagnetY() {
+        return magnetY;
+    }
+
+    public void setMagnetY(double magnetY) {
+        this.magnetY = magnetY;
+    }
+
+    public double getMagnetZ() {
+        return magnetZ;
+    }
+
+    public void setMagnetZ(double magnetZ) {
+        this.magnetZ = magnetZ;
+    }
+
+    public double getGyroX() {
+        return gyroX;
+    }
+
+    public void setGyroX(double gyroX) {
+        this.gyroX = gyroX;
+    }
+
+    public double getGyroY() {
+        return gyroY;
+    }
+
+    public void setGyroY(double gyroY) {
+        this.gyroY = gyroY;
+    }
+
+    public double getGyroZ() {
+        return gyroZ;
+    }
+
+    public void setGyroZ(double gyroZ) {
+        this.gyroZ = gyroZ;
     }
 
     public double getGpsSpeed() {
