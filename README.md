@@ -1,5 +1,5 @@
 # iRoadsRest
 back end of iroads project 
 
-automatically deployinig URL
-http://iroads.projects.mrt.ac.lk
+URL
+http://iroads.projects.mrt.ac.lk:8080
