@@ -4,8 +4,6 @@ import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Created by dushan on 4/23/18.
  */
@@ -35,22 +33,22 @@ public class DataItem {
     private double acceZ_raw;
 
     @Field
-    private double magnetX;
+    private String magnetX;
 
     @Field
-    private double magnetY;
+    private String magnetY;
 
     @Field
-    private double magnetZ;
+    private String magnetZ;
 
     @Field
-    private double gyroX;
+    private String gyroX;
 
     @Field
-    private double gyroY;
+    private String gyroY;
 
     @Field
-    private double gyroZ;
+    private String gyroZ;
 
 
     @Field
@@ -212,51 +210,51 @@ public class DataItem {
         this.acceZ_raw = acceZ_raw;
     }
 
-    public double getMagnetX() {
+    public String getMagnetX() {
         return magnetX;
     }
 
-    public void setMagnetX(double magnetX) {
+    public void setMagnetX(String magnetX) {
         this.magnetX = magnetX;
     }
 
-    public double getMagnetY() {
+    public String getMagnetY() {
         return magnetY;
     }
 
-    public void setMagnetY(double magnetY) {
+    public void setMagnetY(String magnetY) {
         this.magnetY = magnetY;
     }
 
-    public double getMagnetZ() {
+    public String getMagnetZ() {
         return magnetZ;
     }
 
-    public void setMagnetZ(double magnetZ) {
+    public void setMagnetZ(String magnetZ) {
         this.magnetZ = magnetZ;
     }
 
-    public double getGyroX() {
+    public String getGyroX() {
         return gyroX;
     }
 
-    public void setGyroX(double gyroX) {
+    public void setGyroX(String gyroX) {
         this.gyroX = gyroX;
     }
 
-    public double getGyroY() {
+    public String getGyroY() {
         return gyroY;
     }
 
-    public void setGyroY(double gyroY) {
+    public void setGyroY(String gyroY) {
         this.gyroY = gyroY;
     }
 
-    public double getGyroZ() {
+    public String getGyroZ() {
         return gyroZ;
     }
 
-    public void setGyroZ(double gyroZ) {
+    public void setGyroZ(String gyroZ) {
         this.gyroZ = gyroZ;
     }
 
