@@ -19,12 +19,13 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
 
     public List<JsonObject> getJourneyNameObjects(){
 
-        String query="select distinct journeyID,journeyName from iroads where dataType='trip_names' order by journeyName";
+        String query="select distinct journeyID,journeyName,DATE_FORMAT_STR(_sync.time_saved, '1111-11-11  00:00:00') as syncTime from iroads where dataType='trip_names' order by _sync.time_saved desc";
         return getJsonArray(query);
     }
 
 
     public List<JsonObject> getLocationsByjourneyID(String journeyID){
+
         String query="select lat,lon from iroads where dataType='data_item' and journeyID='"+journeyID+"' order by time";
         return getJsonArray(query);
     }
