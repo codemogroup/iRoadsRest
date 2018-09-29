@@ -1,5 +1,8 @@
 package com.codemo.iroads.Repository;
 
+import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.JourneyName;
+import com.codemo.iroads.Domain.Tag;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.stereotype.Repository;
 
@@ -17,19 +20,27 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getJsonArray(query);
     }
 
-    public List<JsonObject> getJourneyNameObjects(){
-
+    public List<JourneyIDNamePair> getJourneyNameObjects(){
         String query="select distinct journeyID,journeyName,DATE_FORMAT_STR(_sync.time_saved, '1111-11-11  00:00:00') as syncTime from iroads where dataType='trip_names' order by _sync.time_saved desc";
-        return getJsonArray(query);
+        return getEntityArray(query,JourneyIDNamePair.class);
     }
 
 
     public List<JsonObject> getLocationsByjourneyID(String journeyID){
-
         String query="select lat,lon from iroads where dataType='data_item' and journeyID='"+journeyID+"' order by time";
         return getJsonArray(query);
     }
 
 
+    public List<JourneyName> getLatestJourneys(String latestJourneyName){
+        String query="select journeyID,dataType,journeyName,startLat,startLon from iroads where dataType ='trip_names' and journeyName='"+latestJourneyName+"'";
+        return getEntityArray(query,JourneyName.class);
+    }
+
+
+    public List<Tag> getTagsByJourneyID(String journeyID){
+        String query="select journeyID,lat,lon,tagType,time from iroads where dataType='tag' and journeyID='"+journeyID +"'";
+        return getEntityArray(query,Tag.class);
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.codemo.iroads.Rest;
 
 import com.codemo.iroads.Domain.DataItem;
+import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.Tag;
 import com.codemo.iroads.Service.DataItemService;
 import com.codemo.iroads.Service.NonEntityClassService;
 import com.codemo.iroads.Util.Util;
@@ -40,7 +42,7 @@ public class RequestController {
     }
 
     @RequestMapping("/getJourneyNames")
-    public String getJourneyNames(){
+    public List<JourneyIDNamePair> getJourneyNames(){
         return nonEntityClassService.getJourneyNameObjects();
     }
 
@@ -67,6 +69,11 @@ public class RequestController {
     @RequestMapping("/getGraph")
     public String getGraphData(@RequestParam("journeyID") String journeyID){
         return dataItemService.getGraphDataByJourneyID(journeyID);
+    }
+
+    @RequestMapping("/getTags")
+    public List<Tag> getTags(@RequestParam("journeyID") String journeyID){
+        return nonEntityClassService.getTagsByJourneyID(journeyID);
     }
 
     @RequestMapping("/getAll")

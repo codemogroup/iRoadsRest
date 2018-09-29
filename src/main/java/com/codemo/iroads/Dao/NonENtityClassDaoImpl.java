@@ -1,5 +1,7 @@
 package com.codemo.iroads.Dao;
 
+import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.Tag;
 import com.codemo.iroads.Repository.NonEntityClassRepository;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
     }
 
     @Override
-    public List<JsonObject> getJourneyNameObjects() {
+    public List<JourneyIDNamePair> getJourneyNameObjects() {
         return nonEntityClassRepository.getJourneyNameObjects();
     }
 
@@ -30,4 +32,10 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
     public List<JsonObject> getLocationsByjourneyID(String journeyID) {
         return nonEntityClassRepository.getLocationsByjourneyID(journeyID);
     }
+
+    @Override
+    public List<Tag> getTagsByJourneyID(String journeyID) {
+        return nonEntityClassRepository.getTagsByJourneyID(journeyID);
+    }
+
 }

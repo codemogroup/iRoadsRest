@@ -240,8 +240,9 @@ public class Util {
         JsonObject metghod4=JsonObject.create().put("function","get data according to journey ID as a Csv").put("path","/getCsvByjourneyID?journeyID=requiredId");
         JsonObject metghod5=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId");
         JsonObject metghod6=JsonObject.create().put("function","get gps path according to journey ID").put("path","/getLocationsByjourneyID?journeyID=requiredId");
-        JsonObject metghod7=JsonObject.create().put("function","get all data").put("path","/getAll");
-        JsonObject metghod8=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
+        JsonObject metghod7=JsonObject.create().put("function","get tagged Bumps and Potholes").put("path","/getTags");
+        JsonObject metghod8=JsonObject.create().put("function","get all data").put("path","/getAll");
+        JsonObject metghod9=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
 
         msg.add(metghod1);
         msg.add(metghod2);
@@ -251,6 +252,7 @@ public class Util {
         msg.add(metghod6);
         msg.add(metghod7);
         msg.add(metghod8);
+        msg.add(metghod9);
 
         return msg;
     }

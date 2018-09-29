@@ -1,6 +1,8 @@
 package com.codemo.iroads.Service;
 
 import com.codemo.iroads.Dao.NonEntityClassDao;
+import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.Tag;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,14 +25,20 @@ public class NonEntityClassServiceImpl implements NonEntityClassService {
     }
 
     @Override
-    public String getJourneyNameObjects() {
-        List<JsonObject> journeyNameObjects = nonEntityClassDao.getJourneyNameObjects();
-        return journeyNameObjects.toString();
+    public  List<JourneyIDNamePair> getJourneyNameObjects() {
+        List<JourneyIDNamePair> journeyNameObjects = nonEntityClassDao.getJourneyNameObjects();
+        return journeyNameObjects;
     }
 
     @Override
     public String getLocationsByjourneyID(String journeyID) {
         List<JsonObject> locationObjects = nonEntityClassDao.getLocationsByjourneyID(journeyID);
         return locationObjects.toString();
+    }
+
+    @Override
+    public List<Tag> getTagsByJourneyID(String journeyID) {
+        List<Tag> tagsByJourneyID = nonEntityClassDao.getTagsByJourneyID(journeyID);
+        return tagsByJourneyID;
     }
 }
