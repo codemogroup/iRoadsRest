@@ -17,4 +17,6 @@ public interface NonEntityClassService {
     String getLocationsByjourneyID(String journeyID);
 
     List<Tag> getTagsByJourneyID(String journeyID);
+
+    List<JourneyIDNamePair> getTaggedJourneyIDs();
 }

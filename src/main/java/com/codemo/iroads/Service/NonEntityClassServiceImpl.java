@@ -41,4 +41,10 @@ public class NonEntityClassServiceImpl implements NonEntityClassService {
         List<Tag> tagsByJourneyID = nonEntityClassDao.getTagsByJourneyID(journeyID);
         return tagsByJourneyID;
     }
+
+    @Override
+    public List<JourneyIDNamePair> getTaggedJourneyIDs() {
+        List<JourneyIDNamePair> taggedIds = nonEntityClassDao.getTaggedJourneyIDs();
+        return taggedIds;
+    }
 }

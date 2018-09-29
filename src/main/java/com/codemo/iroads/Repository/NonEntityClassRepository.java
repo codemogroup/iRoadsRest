@@ -20,6 +20,7 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getJsonArray(query);
     }
 
+
     public List<JourneyIDNamePair> getJourneyNameObjects(){
         String query="select distinct journeyID,journeyName,DATE_FORMAT_STR(_sync.time_saved, '1111-11-11  00:00:00') as syncTime from iroads where dataType='trip_names' order by _sync.time_saved desc";
         return getEntityArray(query,JourneyIDNamePair.class);
@@ -43,4 +44,9 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getEntityArray(query,Tag.class);
     }
 
+
+    public List<JourneyIDNamePair> getTaggedJourneyIDs() {
+        String query="select distinct journeyID from iroads where dataType='tag'";
+        return getEntityArray(query,JourneyIDNamePair.class);
+    }
 }

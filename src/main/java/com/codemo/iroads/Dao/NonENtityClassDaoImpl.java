@@ -38,4 +38,9 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
         return nonEntityClassRepository.getTagsByJourneyID(journeyID);
     }
 
+    @Override
+    public List<JourneyIDNamePair> getTaggedJourneyIDs() {
+        return nonEntityClassRepository.getTaggedJourneyIDs();
+    }
+
 }

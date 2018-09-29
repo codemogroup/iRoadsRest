@@ -21,4 +21,5 @@ public interface NonEntityClassDao {
 
     List<Tag> getTagsByJourneyID(String journeyID);
 
+    List<JourneyIDNamePair> getTaggedJourneyIDs();
 }

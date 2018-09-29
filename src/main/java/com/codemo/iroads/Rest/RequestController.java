@@ -76,6 +76,11 @@ public class RequestController {
         return nonEntityClassService.getTagsByJourneyID(journeyID);
     }
 
+    @RequestMapping("/getTaggedIds")
+    public List<JourneyIDNamePair> getTaggedJourneyIDs(){
+        return nonEntityClassService.getTaggedJourneyIDs();
+    }
+
     @RequestMapping("/getAll")
     public List<DataItem> getAll(){
         return dataItemService.getAll();
