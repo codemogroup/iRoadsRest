@@ -2,12 +2,15 @@ package com.codemo.iroads.Rest;
 
 import com.codemo.iroads.Domain.DataItem;
 import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.Summary;
 import com.codemo.iroads.Domain.Tag;
 import com.codemo.iroads.Service.DataItemService;
 import com.codemo.iroads.Service.NonEntityClassService;
 import com.codemo.iroads.Util.Util;
+import com.couchbase.client.java.document.json.JsonObject;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,6 +83,12 @@ public class RequestController {
     public List<JourneyIDNamePair> getTaggedJourneyIDs(){
         return nonEntityClassService.getTaggedJourneyIDs();
     }
+
+    @RequestMapping("/getSummary")
+    public Summary getSummary(){
+        return nonEntityClassService.getSummary();
+    }
+
 
     @RequestMapping("/getAll")
     public List<DataItem> getAll(){

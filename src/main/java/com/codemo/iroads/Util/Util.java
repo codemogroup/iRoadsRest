@@ -271,6 +271,7 @@ public class Util {
         JsonObject metghod8=JsonObject.create().put("function","get tagged Bumps and Potholes").put("path","/getTags?journeyID=requiredId");
 //        JsonObject metghod9=JsonObject.create().put("function","get all data").put("path","/getAll");
         JsonObject metghod10=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
+        JsonObject metghod11=JsonObject.create().put("function","get summary on database").put("path","/getSummary");
 
         msg.add(metghod1);
         msg.add(metghod2);
@@ -282,6 +283,7 @@ public class Util {
         msg.add(metghod8);
 //        msg.add(metghod9);
         msg.add(metghod10);
+        msg.add(metghod11);
 
         return msg;
     }

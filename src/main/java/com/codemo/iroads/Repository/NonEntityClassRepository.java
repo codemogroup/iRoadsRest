@@ -49,4 +49,14 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         String query="select distinct journeyID from iroads where dataType='tag'";
         return getEntityArray(query,JourneyIDNamePair.class);
     }
+
+    public int getJourneyCount() {
+        String query = "select count(distinct journeyID) as count from iroads where dataType='trip_names'";
+        return execQuery(query).getInt("count");
+    }
+
+    public int getTaggedJourneyCount() {
+        String query="select count(distinct journeyID) as count from iroads where dataType='tag'";
+        return execQuery(query).getInt("count");
+    }
 }
