@@ -15,6 +15,9 @@ public class Util {
     public static List<List<JsonObject>> convertDataItemToGraphAxes(List<DataItem> dataItems, int splitBy){
 
 
+        long zerothTime = dataItems.get(0).getTime();
+
+
         List<List<JsonObject>> graphDataParts=new ArrayList<>();
 
         int partLength=dataItems.size()/splitBy;
@@ -38,7 +41,7 @@ public class Util {
                 dataItemsPart = new ArrayList<>(dataItems.subList(start, end));
             }
 
-            long zerothTime = dataItemsPart.get(0).getTime();
+
 
             JsonObject accelerationXObject = JsonObject.create();
             accelerationXObject.put("key", "Acceleration X");
