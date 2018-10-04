@@ -67,8 +67,8 @@ public class RequestController {
     }
 
     @RequestMapping("/getGraph")
-    public String getGraphData(@RequestParam("journeyID") String journeyID){
-        return dataItemService.getGraphDataByJourneyID(journeyID);
+    public String getGraphData(@RequestParam("journeyID") String journeyID,@RequestParam("splitBy") int splitBy){
+        return dataItemService.getGraphDataByJourneyID(journeyID,splitBy);
     }
 
     @RequestMapping("/getTags")

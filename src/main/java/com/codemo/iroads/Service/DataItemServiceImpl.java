@@ -37,10 +37,10 @@ public class DataItemServiceImpl implements DataItemService {
     }
 
     @Override
-    public String getGraphDataByJourneyID(String journeyID) {
+    public String getGraphDataByJourneyID(String journeyID,int splitBy) {
         List<DataItem> dataItems= dataItemDao.getDataItemByJourneyID(journeyID);
 
-        List<JsonObject> graphData= Util.convertDataItemToGraphAxes(dataItems);
+        List<List<JsonObject>> graphData= Util.convertDataItemToGraphAxes(dataItems,splitBy);
         return graphData.toString();
     }
 
