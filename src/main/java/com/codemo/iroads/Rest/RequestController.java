@@ -1,16 +1,11 @@
 package com.codemo.iroads.Rest;
 
-import com.codemo.iroads.Domain.DataItem;
-import com.codemo.iroads.Domain.JourneyIDNamePair;
-import com.codemo.iroads.Domain.Summary;
-import com.codemo.iroads.Domain.Tag;
+import com.codemo.iroads.Domain.*;
 import com.codemo.iroads.Service.DataItemService;
 import com.codemo.iroads.Service.NonEntityClassService;
 import com.codemo.iroads.Util.Util;
-import com.couchbase.client.java.document.json.JsonObject;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,7 +66,12 @@ public class RequestController {
 
     @RequestMapping("/getGraph")
     public String getGraphData(@RequestParam("journeyID") String journeyID,@RequestParam("splitBy") int splitBy){
-        return dataItemService.getGraphDataByJourneyID(journeyID,splitBy);
+        return dataItemService.getAccelerationGraphDataByJourneyID(journeyID,splitBy);
+    }
+
+    @RequestMapping("/getGraphGyro")
+    public String getGraphDataGyro(@RequestParam("journeyID") String journeyID,@RequestParam("splitBy") int splitBy){
+        return dataItemService.getGyroGraphDataByJourneyID(journeyID,splitBy);
     }
 
     @RequestMapping("/getTags")
@@ -84,11 +84,15 @@ public class RequestController {
         return nonEntityClassService.getTaggedJourneyIDs();
     }
 
+    @RequestMapping("/getAllTags")
+    public List<LatLonTag> getAllTags(){
+        return nonEntityClassService.getAllTaggs();
+    }
+
     @RequestMapping("/getSummary")
     public Summary getSummary(){
         return nonEntityClassService.getSummary();
     }
-
 
     @RequestMapping("/getAll")
     public List<DataItem> getAll(){

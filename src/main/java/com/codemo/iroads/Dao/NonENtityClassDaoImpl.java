@@ -1,6 +1,7 @@
 package com.codemo.iroads.Dao;
 
 import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.LatLonTag;
 import com.codemo.iroads.Domain.Tag;
 import com.codemo.iroads.Repository.NonEntityClassRepository;
 import com.couchbase.client.java.document.json.JsonObject;
@@ -36,6 +37,11 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
     @Override
     public List<Tag> getTagsByJourneyID(String journeyID) {
         return nonEntityClassRepository.getTagsByJourneyID(journeyID);
+    }
+
+    @Override
+    public List<LatLonTag> getAllTags() {
+        return nonEntityClassRepository.getAllTags();
     }
 
     @Override

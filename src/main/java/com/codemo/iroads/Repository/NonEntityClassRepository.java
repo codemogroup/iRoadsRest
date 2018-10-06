@@ -2,6 +2,7 @@ package com.codemo.iroads.Repository;
 
 import com.codemo.iroads.Domain.JourneyIDNamePair;
 import com.codemo.iroads.Domain.JourneyName;
+import com.codemo.iroads.Domain.LatLonTag;
 import com.codemo.iroads.Domain.Tag;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.stereotype.Repository;
@@ -44,6 +45,10 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getEntityArray(query,Tag.class);
     }
 
+    public List<LatLonTag> getAllTags() {
+        String query="select lat,lon,tagType from iroads where dataType='tag'";
+        return getEntityArray(query, LatLonTag.class);
+    }
 
     public List<JourneyIDNamePair> getTaggedJourneyIDs() {
         String query="select distinct journeyID from iroads where dataType='tag'";
@@ -59,4 +64,5 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         String query="select count(distinct journeyID) as count from iroads where dataType='tag'";
         return execQuery(query).getInt("count");
     }
+
 }

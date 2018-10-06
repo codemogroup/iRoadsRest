@@ -18,7 +18,9 @@ public interface DataItemService {
 
     List<DataItem> getDataItemByJourneyID(String journeyID);
 
-    String getGraphDataByJourneyID(String journeyID,int splitBy);
+    String getAccelerationGraphDataByJourneyID(String journeyID, int splitBy);
+
+    String getGyroGraphDataByJourneyID(String journeyID, int splitBy);
 
     void getCsvDataItemByJourneyID(String journeyID,HttpServletResponse response) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 

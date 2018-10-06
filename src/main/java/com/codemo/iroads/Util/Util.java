@@ -142,53 +142,6 @@ public class Util {
                 );
 
 
-//                array_speed.add(JsonObject.create()
-//                                 .put("x",dataItem.getTime()-zerothTime)
-//                                 .put("y",dataItem.getGpsSpeed())
-//                );
-//
-//
-//
-//                array_magnetX.add(JsonObject.create()
-//                        .put("x",dataItem.getTime()-zerothTime)
-//                        .put("y",dataItem.getMagnetX())
-//                );
-//
-//
-//
-//                array_magnetY.add(JsonObject.create()
-//                        .put("x", dataItem.getTime() - zerothTime)
-//                        .put("y", dataItem.getMagnetY())
-//                );
-//
-//
-//
-//                array_magnetZ.add(JsonObject.create()
-//                        .put("x", dataItem.getTime() - zerothTime)
-//                        .put("y", dataItem.getMagnetZ())
-//                );
-//
-//
-//
-//                array_gyroX.add(JsonObject.create()
-//                        .put("x", dataItem.getTime() - zerothTime)
-//                        .put("y", dataItem.getGyroX())
-//                );
-//
-//
-//
-//                array_gyroY.add(JsonObject.create()
-//                        .put("x", dataItem.getTime() - zerothTime)
-//                        .put("y", dataItem.getGyroY())
-//                );
-//
-//
-//
-//                array_gyroZ.add(JsonObject.create()
-//                        .put("x", dataItem.getTime() - zerothTime)
-//                        .put("y", dataItem.getGyroZ())
-//                );
-
             }
 
 
@@ -201,21 +154,85 @@ public class Util {
             graphData.add(accelerationYObject_raw);
             graphData.add(accelerationZObject_raw);
 
-//        if (array_speed.size()>0) {
-//            graphData.add(speedObj);
-//        }
+            graphDataParts.add(graphData);
+        }
 
-//        if (array_magnetX.size()>0) {
-//            graphData.add(magnetXobject);
-//            graphData.add(magnetYobject);
-//            graphData.add(magnetZobject);
-//        }
-//
-//        if (array_gyroX.size()>0) {
-//            graphData.add(gyroXobject);
-//            graphData.add(gyroYobject);
-//            graphData.add(gyroZobject);
-//        }
+        return graphDataParts;
+    }
+
+
+    public static List<List<JsonObject>> convertDataItemToGraphAxesGyro(List<DataItem> dataItems, int splitBy){
+
+
+        long zerothTime = dataItems.get(0).getTime();
+
+
+        List<List<JsonObject>> graphDataParts=new ArrayList<>();
+
+        int partLength=dataItems.size()/splitBy;
+
+        int reminder=dataItems.size()%splitBy;
+
+        if (reminder>0){
+            partLength++;
+        }
+
+        for(int i = 0; i < partLength ; i++) {
+
+            int start=i*splitBy;
+            int end=i*splitBy+splitBy;
+
+            List<DataItem> dataItemsPart;
+
+            if(i==partLength-1) {
+                dataItemsPart = new ArrayList<>(dataItems.subList(start, dataItems.size()-1));
+            }else {
+                dataItemsPart = new ArrayList<>(dataItems.subList(start, end));
+            }
+
+
+
+            JsonObject gyroXObject = JsonObject.create();
+            gyroXObject.put("key", "Gyro X");
+            JsonArray arrayX = JsonArray.create();
+            gyroXObject.put("values", arrayX);
+
+            JsonObject gyroYObject = JsonObject.create();
+            gyroYObject.put("key", "Gyro Y");
+            JsonArray arrayY = JsonArray.create();
+            gyroYObject.put("values", arrayY);
+
+            JsonObject gyroZObject = JsonObject.create();
+            gyroZObject.put("key", "Acceleration Z");
+            JsonArray arrayZ = JsonArray.create();
+            gyroZObject.put("values", arrayZ);
+
+
+
+            for (DataItem dataItem : dataItemsPart) {
+                arrayX.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getAcceX())
+                );
+
+                arrayY.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getAcceY())
+                );
+
+                arrayZ.add(JsonObject.create()
+                        .put("x", dataItem.getTime() - zerothTime)
+                        .put("y", dataItem.getAcceZ())
+                );
+
+            }
+
+
+            List<JsonObject> graphData = new ArrayList<>();
+
+            graphData.add(gyroXObject);
+            graphData.add(gyroYObject);
+            graphData.add(gyroZObject);
 
 
             graphDataParts.add(graphData);
@@ -223,6 +240,9 @@ public class Util {
 
         return graphDataParts;
     }
+
+
+
 
     public static String welcome(){
 
@@ -265,13 +285,15 @@ public class Util {
         JsonObject metghod2=JsonObject.create().put("function","get journey Names with ID").put("path","/getJourneyNames");
         JsonObject metghod3=JsonObject.create().put("function","get data according to journey ID").put("path","/getByjourneyID?journeyID=requiredId");
         JsonObject metghod4=JsonObject.create().put("function","get data according to journey ID as a Csv").put("path","/getCsvByjourneyID?journeyID=requiredId");
-        JsonObject metghod5=JsonObject.create().put("function","get graph data according to journey ID").put("path","/getGraph?journeyID=requiredId&splitBy=splitingValue");
-        JsonObject metghod6=JsonObject.create().put("function","get gps path according to journey ID").put("path","/getLocationsByjourneyID?journeyID=requiredId");
-        JsonObject metghod7=JsonObject.create().put("function","get tagged ids").put("path","/getTaggedIds");
-        JsonObject metghod8=JsonObject.create().put("function","get tagged Bumps and Potholes").put("path","/getTags?journeyID=requiredId");
-//        JsonObject metghod9=JsonObject.create().put("function","get all data").put("path","/getAll");
-        JsonObject metghod10=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
-        JsonObject metghod11=JsonObject.create().put("function","get summary on database").put("path","/getSummary");
+        JsonObject metghod5=JsonObject.create().put("function","get acceleration graph data according to journey ID").put("path","/getGraph?journeyID=requiredId&splitBy=splitingValue");
+        JsonObject metghod6=JsonObject.create().put("function","get gyro graph data according to journey ID").put("path","/getGraphGyro?journeyID=requiredId&splitBy=splitingValue");
+        JsonObject metghod7=JsonObject.create().put("function","get gps path according to journey ID").put("path","/getLocationsByjourneyID?journeyID=requiredId");
+        JsonObject metghod8=JsonObject.create().put("function","get tagged ids").put("path","/getTaggedIds");
+        JsonObject metghod9=JsonObject.create().put("function","get tagged Bumps and Potholes").put("path","/getTags?journeyID=requiredId");
+        JsonObject metghod10=JsonObject.create().put("function","get all tagged Bumps and Potholes").put("path","/getAllTags");
+//        JsonObject metghod11=JsonObject.create().put("function","get all data").put("path","/getAll");
+        JsonObject metghod12=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
+        JsonObject metghod13=JsonObject.create().put("function","get summary on database").put("path","/getSummary");
 
         msg.add(metghod1);
         msg.add(metghod2);
@@ -281,9 +303,11 @@ public class Util {
         msg.add(metghod6);
         msg.add(metghod7);
         msg.add(metghod8);
-//        msg.add(metghod9);
+        msg.add(metghod9);
         msg.add(metghod10);
-        msg.add(metghod11);
+//        msg.add(metghod11);
+        msg.add(metghod12);
+        msg.add(metghod13);
 
         return msg;
     }

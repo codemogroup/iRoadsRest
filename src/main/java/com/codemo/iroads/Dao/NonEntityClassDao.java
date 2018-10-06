@@ -1,6 +1,7 @@
 package com.codemo.iroads.Dao;
 
 import com.codemo.iroads.Domain.JourneyIDNamePair;
+import com.codemo.iroads.Domain.LatLonTag;
 import com.codemo.iroads.Domain.Tag;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.stereotype.Repository;
@@ -21,9 +22,13 @@ public interface NonEntityClassDao {
 
     List<Tag> getTagsByJourneyID(String journeyID);
 
+    List<LatLonTag> getAllTags();
+
     List<JourneyIDNamePair> getTaggedJourneyIDs();
 
     int getJourneyCount();
 
     int getTaggedJourneyCount();
+
+
 }
