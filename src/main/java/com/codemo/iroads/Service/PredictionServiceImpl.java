@@ -2,6 +2,7 @@ package com.codemo.iroads.Service;
 
 import com.codemo.iroads.Dao.PredictionDao;
 import com.codemo.iroads.Domain.Prediction;
+import com.codemo.iroads.Domain.PredictionGroupWrapper;
 import com.couchbase.client.java.document.json.JsonArray;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
@@ -60,7 +61,14 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public List<String> getPredictionGroups() {
-        List<String> predictionGroups = predictionDao.getPredictionGroups();
-        return predictionGroups;
+        List<PredictionGroupWrapper> predictionGroups = predictionDao.getPredictionGroups();
+
+
+        List<String> predictionGroupsStrlist= new ArrayList<>();
+
+        for(PredictionGroupWrapper pgw:predictionGroups){
+            predictionGroupsStrlist.add(pgw.getPredictionGroup());
+        }
+        return predictionGroupsStrlist;
     }
 }

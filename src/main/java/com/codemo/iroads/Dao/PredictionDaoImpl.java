@@ -1,6 +1,7 @@
 package com.codemo.iroads.Dao;
 
 import com.codemo.iroads.Domain.Prediction;
+import com.codemo.iroads.Domain.PredictionGroupWrapper;
 import com.codemo.iroads.Repository.NonEntityClassRepository;
 import com.codemo.iroads.Repository.PredictionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class PredictionDaoImpl implements PredictionDao {
     }
 
     @Override
-    public List<String> getPredictionGroups() {
-        List<String> predictionGroups = nonEntityClassRepository.getPredictionGroups();
+    public List<PredictionGroupWrapper> getPredictionGroups() {
+        List<PredictionGroupWrapper> predictionGroups = nonEntityClassRepository.getPredictionGroups();
         return predictionGroups;
     }
 }

@@ -1,6 +1,7 @@
 package com.codemo.iroads.Service;
 
 import com.codemo.iroads.Domain.Prediction;
+import com.codemo.iroads.Domain.PredictionGroupWrapper;
 import com.couchbase.client.java.document.json.JsonArray;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;

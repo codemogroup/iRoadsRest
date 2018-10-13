@@ -1,9 +1,6 @@
 package com.codemo.iroads.Repository;
 
-import com.codemo.iroads.Domain.JourneyIDNamePair;
-import com.codemo.iroads.Domain.JourneyName;
-import com.codemo.iroads.Domain.LatLonTag;
-import com.codemo.iroads.Domain.Tag;
+import com.codemo.iroads.Domain.*;
 import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.stereotype.Repository;
 
@@ -65,9 +62,9 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return execQuery(query).getInt("count");
     }
 
-    public List<String> getPredictionGroups(){
-        String query="select predictionGroup from iroads where dataType='prediction'";
-        return getEntityArray(query, String.class);
+    public List<PredictionGroupWrapper> getPredictionGroups(){
+        String query="select distinct predictionGroup from iroads where dataType='prediction'";
+        return getEntityArray(query, PredictionGroupWrapper.class);
     }
 
 }
