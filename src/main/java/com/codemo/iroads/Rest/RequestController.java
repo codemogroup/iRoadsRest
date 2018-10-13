@@ -106,8 +106,8 @@ public class RequestController {
     }
 
     @RequestMapping("/getPredictionGroups")
-    public List<String> getPredictionGroups(){
-        List<String> predictionGroups = predictionService.getPredictionGroups();
+    public List<PredictionGroupWrapper> getPredictionGroups(){
+        List<PredictionGroupWrapper> predictionGroups = predictionService.getPredictionGroups();
         return predictionGroups;
     }
 

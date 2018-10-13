@@ -60,15 +60,9 @@ public class PredictionServiceImpl implements PredictionService {
     }
 
     @Override
-    public List<String> getPredictionGroups() {
+    public List<PredictionGroupWrapper> getPredictionGroups() {
         List<PredictionGroupWrapper> predictionGroups = predictionDao.getPredictionGroups();
 
-
-        List<String> predictionGroupsStrlist= new ArrayList<>();
-
-        for(PredictionGroupWrapper pgw:predictionGroups){
-            predictionGroupsStrlist.add(pgw.getPredictionGroup());
-        }
-        return predictionGroupsStrlist;
+        return predictionGroups;
     }
 }

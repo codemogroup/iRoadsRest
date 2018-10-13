@@ -21,5 +21,5 @@ public interface PredictionService {
 
     List<Prediction> getAllPredictions();
 
-    List<String> getPredictionGroups();
+    List<PredictionGroupWrapper> getPredictionGroups();
 }
