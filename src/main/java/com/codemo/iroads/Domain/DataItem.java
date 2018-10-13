@@ -11,6 +11,8 @@ import org.springframework.data.couchbase.core.mapping.Document;
 @Document
 public class DataItem {
 
+    private static final double GRAVITY = 9.8;
+
     @Id
     private String id;
 
@@ -265,5 +267,27 @@ public class DataItem {
     public void setGpsSpeed(double gpsSpeed) {
         this.gpsSpeed = gpsSpeed;
     }
+
+    /**
+     * absolute value of vertical reoriented acceleration without gravity
+     *
+     * @return
+     *
+     */
+    public double getVerticalAccelerationAbsolute(){
+        double value= Math.abs(acceY-GRAVITY);
+        return value;
+    }
+
+    /**
+     * rms value of all 3 reoriented accelerations
+     *
+     * @return
+     */
+    public double getRmsAcceleration(){
+        double value= Math.sqrt(Math.pow(acceX,2)+Math.pow(acceY-GRAVITY,2)+Math.pow(acceZ,2));
+        return value;
+    }
+
 }
 

@@ -65,4 +65,9 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return execQuery(query).getInt("count");
     }
 
+    public List<String> getPredictionGroups(){
+        String query="select predictionGroup from iroads where dataType='prediction'";
+        return getEntityArray(query, String.class);
+    }
+
 }

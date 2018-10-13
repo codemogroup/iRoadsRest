@@ -20,4 +20,8 @@ public interface DataItemDao {
 
     List<DataItem> getDataItemByJourneyID(String journeyID);
 
+    List<DataItem> getDummy();
+
+
+
 }

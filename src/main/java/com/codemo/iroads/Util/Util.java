@@ -294,6 +294,10 @@ public class Util {
 //        JsonObject metghod11=JsonObject.create().put("function","get all data").put("path","/getAll");
         JsonObject metghod12=JsonObject.create().put("function","get average filtered data").put("path","/getAverageByjourneyID?journeyID=requiredId");
         JsonObject metghod13=JsonObject.create().put("function","get summary on database").put("path","/getSummary");
+        JsonObject metghod14=JsonObject.create().put("function","get journey as segmented information").put("path","/getJourneySegments?journeyID=requiredId&lat=latitude&lon=longitude");
+        JsonObject metghod15=JsonObject.create().put("function","get predicted data group names").put("path","/getPredictionGroups");
+        JsonObject metghod16=JsonObject.create().put("function","get predicted data by group name").put("path","/getPredictionsByGroup?groupID=groupId");
+        JsonObject metghod17=JsonObject.create().put("function","get all predicted data").put("path","/getAllPredictions");
 
         msg.add(metghod1);
         msg.add(metghod2);
@@ -308,6 +312,10 @@ public class Util {
 //        msg.add(metghod11);
         msg.add(metghod12);
         msg.add(metghod13);
+        msg.add(metghod14);
+        msg.add(metghod15);
+        msg.add(metghod16);
+        msg.add(metghod17);
 
         return msg;
     }

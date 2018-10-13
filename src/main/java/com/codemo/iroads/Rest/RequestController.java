@@ -3,6 +3,7 @@ package com.codemo.iroads.Rest;
 import com.codemo.iroads.Domain.*;
 import com.codemo.iroads.Service.DataItemService;
 import com.codemo.iroads.Service.NonEntityClassService;
+import com.codemo.iroads.Service.PredictionService;
 import com.codemo.iroads.Util.Util;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +29,9 @@ public class RequestController {
 
     @Autowired
     NonEntityClassService nonEntityClassService;
+
+    @Autowired
+    PredictionService predictionService;
 
 
     @RequestMapping("/")
@@ -89,9 +94,33 @@ public class RequestController {
         return nonEntityClassService.getAllTaggs();
     }
 
+    @RequestMapping("/getJourneySegments")
+    public SegmentInfoWrapper getAllTags(@RequestParam("journeyID") String journeyID,@RequestParam("lat") double lat,@RequestParam("lon") double lon){
+        SegmentInfoWrapper segmentInfoWrapper = dataItemService.getJourneySegments(journeyID, lat, lon);
+        return segmentInfoWrapper;
+    }
+
     @RequestMapping("/getSummary")
     public Summary getSummary(){
         return nonEntityClassService.getSummary();
+    }
+
+    @RequestMapping("/getPredictionGroups")
+    public List<String> getPredictionGroups(){
+        List<String> predictionGroups = predictionService.getPredictionGroups();
+        return predictionGroups;
+    }
+
+    @RequestMapping("/getPredictionsByGroup")
+    public List<Prediction> getPredictionsByGroup(@RequestParam("groupID") String groupID){
+        List<Prediction> predictionsByGroupId = predictionService.getPredictionsByGroupId(groupID);
+        return predictionsByGroupId;
+    }
+
+    @RequestMapping("/getAllPredictions")
+    public List<Prediction> getAllPredictionsp(){
+        List<Prediction> predictions= predictionService.getAllPredictions();
+        return predictions;
     }
 
     @RequestMapping("/getAll")
