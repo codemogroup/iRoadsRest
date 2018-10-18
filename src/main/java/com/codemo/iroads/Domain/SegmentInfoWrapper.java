@@ -27,6 +27,10 @@ public class SegmentInfoWrapper {
 
     private double maxAvgRmsAccel;
 
+    private double maxAboveThresholdPerMeter;
+
+    private double minAboveThresholdPerMeter;
+
     private String journeID;
 
     private Date startTime;
@@ -163,5 +167,21 @@ public class SegmentInfoWrapper {
 
     public void setMaxAvgRmsAccel(double maxAvgRmsAccel) {
         this.maxAvgRmsAccel = maxAvgRmsAccel;
+    }
+
+    public double getMaxAboveThresholdPerMeter() {
+        return maxAboveThresholdPerMeter;
+    }
+
+    public void setMaxAboveThresholdPerMeter(double maxAboveThresholdPerMeter) {
+        this.maxAboveThresholdPerMeter = maxAboveThresholdPerMeter;
+    }
+
+    public double getMinAboveThresholdPerMeter() {
+        return minAboveThresholdPerMeter;
+    }
+
+    public void setMinAboveThresholdPerMeter(double minAboveThresholdPerMeter) {
+        this.minAboveThresholdPerMeter = minAboveThresholdPerMeter;
     }
 }

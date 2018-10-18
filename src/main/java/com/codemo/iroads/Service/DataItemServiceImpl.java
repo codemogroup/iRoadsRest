@@ -145,6 +145,9 @@ public class DataItemServiceImpl implements DataItemService {
         double maxAvgRmsAccel=segmentInfoList.get(0).getAvgRmsAccel();
         double minAvgRmsAccel=segmentInfoList.get(0).getAvgRmsAccel();
 
+        double maxAboveThresholdPerMeter=segmentInfoList.get(0).getAboveThresholdPerMeter();
+        double minAboveThresholdPerMeter=segmentInfoList.get(0).getAboveThresholdPerMeter();
+
         for (SegmentInfo segmentInfo:segmentInfoList){
             //avg speed
             if (maxAvgSpeed<segmentInfo.getAvgSpeed()){
@@ -185,6 +188,14 @@ public class DataItemServiceImpl implements DataItemService {
             if (minAvgRmsAccel>segmentInfo.getAvgRmsAccel()){
                 minAvgRmsAccel=segmentInfo.getAvgRmsAccel();
             }
+
+            //above threshold
+            if (maxAboveThresholdPerMeter<segmentInfo.getAboveThresholdPerMeter()){
+                maxAboveThresholdPerMeter=segmentInfo.getAboveThresholdPerMeter();
+            }
+            if (minAboveThresholdPerMeter>segmentInfo.getAboveThresholdPerMeter()){
+                minAboveThresholdPerMeter=segmentInfo.getAboveThresholdPerMeter();
+            }
         }
 
         segmentInfoWrapper.setMinAvgSpeed(minAvgSpeed);
@@ -201,6 +212,9 @@ public class DataItemServiceImpl implements DataItemService {
 
         segmentInfoWrapper.setMinAvgRmsAccel(minAvgRmsAccel);
         segmentInfoWrapper.setMaxAvgRmsAccel(maxAvgRmsAccel);
+
+        segmentInfoWrapper.setMinAboveThresholdPerMeter(minAboveThresholdPerMeter);
+        segmentInfoWrapper.setMaxAboveThresholdPerMeter(maxAboveThresholdPerMeter);
 
 
         segmentInfoWrapper.setJourneID(journeyID);
