@@ -18,6 +18,10 @@ public class SegmentInfo {
 
     private double avgAccelY;
 
+    private int aboveThreshold;
+
+    private double aboveThresholdPerMeter;
+
     private double standardDeviationFullMeanAccelY;
 
     private double standardDeviationSegmentMeanAccelY;
@@ -103,4 +107,21 @@ public class SegmentInfo {
     public void setAvgRmsAccel(double avgRmsAccel) {
         this.avgRmsAccel = avgRmsAccel;
     }
+
+
+    public double getAboveThreshold() {
+        return aboveThreshold;
+    }
+
+    public void setAboveThreshold(int aboveThreshold) {
+        this.aboveThreshold = aboveThreshold;
+        if (length!=0){
+            this.aboveThresholdPerMeter=aboveThreshold/length;
+        }
+    }
+
+    public double getAboveThresholdPerMeter() {
+        return aboveThresholdPerMeter;
+    }
+
 }

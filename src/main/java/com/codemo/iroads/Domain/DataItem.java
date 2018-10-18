@@ -289,5 +289,15 @@ public class DataItem {
         return value;
     }
 
+    /**
+     * threshold based identification
+     *
+     * @param threshold
+     * @return
+     */
+    public boolean isAccelYAboveThreshold(double threshold){
+        return acceY-threshold>0;
+    }
+
 }
 

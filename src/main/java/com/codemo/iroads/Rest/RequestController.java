@@ -95,8 +95,8 @@ public class RequestController {
     }
 
     @RequestMapping("/getJourneySegments")
-    public SegmentInfoWrapper getAllTags(@RequestParam("journeyID") String journeyID,@RequestParam("lat") double lat,@RequestParam("lon") double lon){
-        SegmentInfoWrapper segmentInfoWrapper = dataItemService.getJourneySegments(journeyID, lat, lon);
+    public SegmentInfoWrapper getAllTags(@RequestParam("journeyID") String journeyID,@RequestParam("lat") double lat,@RequestParam("lon") double lon,@RequestParam(value = "threshold",defaultValue = "1.0") Double threshold){
+        SegmentInfoWrapper segmentInfoWrapper = dataItemService.getJourneySegments(journeyID, lat, lon,threshold);
         return segmentInfoWrapper;
     }
 

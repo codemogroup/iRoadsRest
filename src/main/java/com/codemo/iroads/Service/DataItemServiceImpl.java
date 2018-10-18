@@ -99,7 +99,7 @@ public class DataItemServiceImpl implements DataItemService {
     }
 
     @Override
-    public SegmentInfoWrapper getJourneySegments(String journeyID, double lat, double lon) {
+    public SegmentInfoWrapper getJourneySegments(String journeyID, double lat, double lon, double threshold) {
         List<DataItem> dataItems = dataItemDao.getDataItemByJourneyID(journeyID);
 //        List<DataItem> dataItems = dataItemDao.getDummy();
 
@@ -124,7 +124,7 @@ public class DataItemServiceImpl implements DataItemService {
 
 
         List<RoadSegment> segments = createSegments(dataItems, selectedIndex);
-        List<SegmentInfo> segmentInfoList = finalizeSegments(segments,fullJourneyMeanAccelerationY);
+        List<SegmentInfo> segmentInfoList = finalizeSegments(segments,fullJourneyMeanAccelerationY,threshold);
 
         SegmentInfoWrapper segmentInfoWrapper = new SegmentInfoWrapper();
         segmentInfoWrapper.setSegmentInfoList(segmentInfoList);
@@ -220,7 +220,7 @@ public class DataItemServiceImpl implements DataItemService {
 
     }
 
-    private List<SegmentInfo> finalizeSegments(List<RoadSegment> segments,double fullJourneyMeanAccelerationY){
+    private List<SegmentInfo> finalizeSegments(List<RoadSegment> segments,double fullJourneyMeanAccelerationY,double threshold){
 
         List<SegmentInfo> segmentInfoList=new ArrayList<>();
         for(RoadSegment segment:segments){
@@ -246,6 +246,9 @@ public class DataItemServiceImpl implements DataItemService {
 
             // set avgY
             segmentInfo.setAvgAccelY(segment.getAverageAbsoluteVerticalAcceleration());
+
+            //set no of points above threshold
+            segmentInfo.setAboveThreshold(segment.getAboveThreshold(threshold));
 
             // set sd Y fullMean
             segmentInfo.setStandardDeviationFullMeanAccelY(segment.getStandardDeviationVerticalFullMean(fullJourneyMeanAccelerationY));

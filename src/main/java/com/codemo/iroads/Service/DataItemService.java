@@ -1,7 +1,6 @@
 package com.codemo.iroads.Service;
 
 import com.codemo.iroads.Domain.DataItem;
-import com.codemo.iroads.Domain.SegmentInfo;
 import com.codemo.iroads.Domain.SegmentInfoWrapper;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
@@ -28,5 +27,5 @@ public interface DataItemService {
 
     List<DataItem> getAverageFilterdData(String journeyID);
 
-    SegmentInfoWrapper getJourneySegments(String journeyID, double lat, double lon);
+    SegmentInfoWrapper getJourneySegments(String journeyID, double lat, double lon, double threshold);
 }

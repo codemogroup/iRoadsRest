@@ -118,4 +118,16 @@ public class RoadSegment {
             return 0;
         }
     }
+
+    public int getAboveThreshold(double threshold) {
+        int aboveThreshold=0;
+
+        for (DataItem di:dataItems){
+            if (di.isAccelYAboveThreshold(threshold)){
+                aboveThreshold++;
+            }
+        }
+
+        return aboveThreshold;
+    }
 }
