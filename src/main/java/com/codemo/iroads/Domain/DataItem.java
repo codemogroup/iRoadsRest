@@ -299,5 +299,23 @@ public class DataItem {
         return acceY-threshold>0;
     }
 
+    public int getTimeSegmentNum(long zerothTime,int splitBy){
+        double timeToPoint=(this.time-zerothTime)/1000.0;
+        int num=0;
+
+        if (timeToPoint==0){
+            return 0;
+        }
+
+        if(timeToPoint%splitBy==0){
+            num= (int) (timeToPoint/splitBy);
+            num--;
+        }
+        else {
+            num = (int) (timeToPoint / splitBy);
+        }
+        return num;
+    }
+
 }
 
