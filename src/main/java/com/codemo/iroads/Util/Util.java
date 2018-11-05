@@ -18,19 +18,23 @@ public class Util {
      * @param splitBy splitting time by seconds
      * @return
      */
-    public static List<List<JsonObject>> convertDataItemToGraphAxes(List<DataItem> dataItems, int splitBy){
+    public static List<JsonObject> convertDataItemToGraphAxes(List<DataItem> dataItems, int splitBy){
 
         long zerothTime = dataItems.get(0).getTime();
 
-        List<List<JsonObject>> graphDataParts=new ArrayList<>();
+        List<JsonObject> graphDataParts=new ArrayList<>();
 
         List<List<DataItem>> splitParts = splitByTime(dataItems, zerothTime, splitBy);
 
         for(List<DataItem> part:splitParts) {
 
-            List<JsonObject> graphData = createGraphPart(part, zerothTime);
+            List<JsonObject> graphDataValues = createGraphPart(part, zerothTime);
 
-            graphDataParts.add(graphData);
+            JsonObject graphPart = JsonObject.create();
+            JsonArray firstValuesArray=(JsonArray)graphDataValues.get(0).get("values");
+            graphPart.put("dataItemDensity", firstValuesArray.size());
+            graphPart.put("values", graphDataValues);
+            graphDataParts.add(graphPart);
 
         }
 

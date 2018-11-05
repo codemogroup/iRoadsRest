@@ -47,7 +47,7 @@ public class DataItemServiceImpl implements DataItemService {
     public String getAccelerationGraphDataByJourneyID(String journeyID, int splitBy) {
         List<DataItem> dataItems= dataItemDao.getDataItemByJourneyID(journeyID);
 
-        List<List<JsonObject>> graphData= Util.convertDataItemToGraphAxes(dataItems,splitBy);
+        List<JsonObject> graphData= Util.convertDataItemToGraphAxes(dataItems,splitBy);
         return graphData.toString();
     }
 
