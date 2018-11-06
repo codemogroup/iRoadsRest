@@ -1,8 +1,10 @@
 package com.codemo.iroads.Util;
 
 import com.codemo.iroads.Domain.DataItem;
+import com.codemo.iroads.Domain.LatLon;
 import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.List;
  * Created by dushan on 5/4/18.
  */
 public class Util {
+
+
+    static Gson gson=new Gson();
 
     /**
      *
@@ -30,9 +35,12 @@ public class Util {
 
             List<JsonObject> graphDataValues = createGraphPart(part, zerothTime);
 
+            List<JsonObject> gpsArray = createGpsArray(part);
+
             JsonObject graphPart = JsonObject.create();
             JsonArray firstValuesArray=(JsonArray)graphDataValues.get(0).get("values");
             graphPart.put("dataItemDensity", firstValuesArray.size());
+            graphPart.put("gps",gpsArray);
             graphPart.put("values", graphDataValues);
             graphDataParts.add(graphPart);
 
@@ -186,6 +194,19 @@ public class Util {
         graphData.add(accelerationZObject_raw);
 
         return graphData;
+    }
+
+    private static List<JsonObject> createGpsArray(List<DataItem> dataItemsPart){
+        List<JsonObject> gpsList=new ArrayList<>();
+        for (DataItem di:dataItemsPart){
+
+            JsonObject gpsPoint = JsonObject.create();
+            gpsPoint.put("lat", di.getLat());
+            gpsPoint.put("lon", di.getLon());
+
+            gpsList.add(gpsPoint);
+        }
+        return gpsList;
     }
 
     public static List<List<JsonObject>> convertDataItemToGraphAxesGyro(List<DataItem> dataItems, int splitBy){
