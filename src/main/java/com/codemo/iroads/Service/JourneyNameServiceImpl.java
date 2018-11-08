@@ -79,6 +79,10 @@ public class JourneyNameServiceImpl implements JourneyNameService {
 
     public void renameLatestJourney(String journeyID,String lat,String lon){
 
+        if(lat.equals("0.0") || lon.equals("0.0")){
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("https://nominatim.openstreetmap.org/reverse?")
                 .append("format=").append("jsonv2").append("&")
