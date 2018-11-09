@@ -29,6 +29,9 @@ public class DataItemServiceImpl implements DataItemService {
     DataItemDao dataItemDao;
 
     @Autowired
+    IRIService iriService;
+
+    @Autowired
     Gson gson;
 
     @Override
@@ -99,7 +102,7 @@ public class DataItemServiceImpl implements DataItemService {
     }
 
     @Override
-    public SegmentInfoWrapper getJourneySegments(String journeyID, double lat, double lon, double threshold) {
+    public SegmentInfoWrapper getJourneySegments(String journeyID, double lat, double lon, double threshold,int segmentLength) {
         List<DataItem> dataItems = dataItemDao.getDataItemByJourneyID(journeyID);
 //        List<DataItem> dataItems = dataItemDao.getDummy();
 
@@ -123,8 +126,8 @@ public class DataItemServiceImpl implements DataItemService {
         double fullJourneyMeanAccelerationY=totalVerticalAbsoluteAcceletaion/dataItems.size();
 
 
-        List<RoadSegment> segments = createSegments(dataItems, selectedIndex);
-        List<SegmentInfo> segmentInfoList = finalizeSegments(segments,fullJourneyMeanAccelerationY,threshold);
+        List<RoadSegment> segments = createSegments(dataItems, selectedIndex,segmentLength);
+        List<SegmentInfo> segmentInfoList = finalizeSegments(segments,fullJourneyMeanAccelerationY,threshold,segmentLength);
 
         SegmentInfoWrapper segmentInfoWrapper = new SegmentInfoWrapper();
         segmentInfoWrapper.setSegmentInfoList(segmentInfoList);
@@ -147,6 +150,9 @@ public class DataItemServiceImpl implements DataItemService {
 
         double maxAboveThresholdPerMeter=segmentInfoList.get(0).getAboveThresholdPerMeter();
         double minAboveThresholdPerMeter=segmentInfoList.get(0).getAboveThresholdPerMeter();
+
+        double maxIri=segmentInfoList.get(0).getIri();
+        double minIri=segmentInfoList.get(0).getIri();
 
         for (SegmentInfo segmentInfo:segmentInfoList){
             //avg speed
@@ -196,6 +202,14 @@ public class DataItemServiceImpl implements DataItemService {
             if (minAboveThresholdPerMeter>segmentInfo.getAboveThresholdPerMeter()){
                 minAboveThresholdPerMeter=segmentInfo.getAboveThresholdPerMeter();
             }
+
+            //iri
+            if (maxIri<segmentInfo.getIri()){
+                maxIri=segmentInfo.getIri();
+            }
+            if (minIri>segmentInfo.getIri()){
+                minIri=segmentInfo.getIri();
+            }
         }
 
         segmentInfoWrapper.setMinAvgSpeed(minAvgSpeed);
@@ -216,6 +230,8 @@ public class DataItemServiceImpl implements DataItemService {
         segmentInfoWrapper.setMinAboveThresholdPerMeter(minAboveThresholdPerMeter);
         segmentInfoWrapper.setMaxAboveThresholdPerMeter(maxAboveThresholdPerMeter);
 
+        segmentInfoWrapper.setMinIri(minIri);
+        segmentInfoWrapper.setMaxIri(maxIri);
 
         segmentInfoWrapper.setJourneID(journeyID);
 
@@ -234,7 +250,7 @@ public class DataItemServiceImpl implements DataItemService {
 
     }
 
-    private List<SegmentInfo> finalizeSegments(List<RoadSegment> segments,double fullJourneyMeanAccelerationY,double threshold){
+    private List<SegmentInfo> finalizeSegments(List<RoadSegment> segments,double fullJourneyMeanAccelerationY,double threshold,int segmentLength){
 
         List<SegmentInfo> segmentInfoList=new ArrayList<>();
         for(RoadSegment segment:segments){
@@ -273,8 +289,13 @@ public class DataItemServiceImpl implements DataItemService {
             // set rms accec
             segmentInfo.setAvgRmsAccel(segment.getAverageAccelerationRms());
 
+            // set iri
+            segmentInfo.setIri(segment.getIRI(iriService, segmentLength));
+
             ////adding to list
             segmentInfoList.add(segmentInfo);
+
+
 
         }
         return segmentInfoList;
@@ -319,9 +340,8 @@ public class DataItemServiceImpl implements DataItemService {
     }
 
     private final static int pointGap=1;
-    private final static int segmentLength=100;
 
-    private List<RoadSegment> createSegments(List<DataItem> dataItems,int fromPointIndex){
+    private List<RoadSegment> createSegments(List<DataItem> dataItems,int fromPointIndex,int segmentLength){
 
         //0 to fromPointIndex-pointGap
         List<RoadSegment> segmentsBackward = createSegmentsBackward(dataItems, fromPointIndex, pointGap, segmentLength);

@@ -2,6 +2,7 @@ package com.codemo.iroads.Rest;
 
 import com.codemo.iroads.Domain.*;
 import com.codemo.iroads.Service.DataItemService;
+import com.codemo.iroads.Service.IRIService;
 import com.codemo.iroads.Service.NonEntityClassService;
 import com.codemo.iroads.Service.PredictionService;
 import com.codemo.iroads.Util.Util;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +33,8 @@ public class RequestController {
     @Autowired
     PredictionService predictionService;
 
+    @Autowired
+    IRIService iriService;
 
     @RequestMapping("/")
     public String root(){
@@ -95,8 +97,8 @@ public class RequestController {
     }
 
     @RequestMapping("/getJourneySegments")
-    public SegmentInfoWrapper getAllTags(@RequestParam("journeyID") String journeyID,@RequestParam("lat") double lat,@RequestParam("lon") double lon,@RequestParam(value = "threshold",defaultValue = "1.0") Double threshold){
-        SegmentInfoWrapper segmentInfoWrapper = dataItemService.getJourneySegments(journeyID, lat, lon,threshold);
+    public SegmentInfoWrapper getAllTags(@RequestParam("journeyID") String journeyID,@RequestParam("lat") double lat,@RequestParam("lon") double lon,@RequestParam(value = "threshold",defaultValue = "1.0") Double threshold,@RequestParam(value = "segmentLength",defaultValue = "100") Integer segmentLength){
+        SegmentInfoWrapper segmentInfoWrapper = dataItemService.getJourneySegments(journeyID, lat, lon,threshold,segmentLength);
         return segmentInfoWrapper;
     }
 
@@ -123,9 +125,22 @@ public class RequestController {
         return predictions;
     }
 
-    @RequestMapping("/getAll")
-    public List<DataItem> getAll(){
-        return dataItemService.getAll();
+    @RequestMapping("/getAllIriEq")
+    public List<IRISegmentParameter> getAllIRISegmentParameters(){
+        List<IRISegmentParameter> all= iriService.getAll();
+        return all;
     }
+
+    @RequestMapping("/getIriEqBySegment")
+    public IRISegmentParameter getIRIEqBySegment(@RequestParam("segmentLength") int segmentLength){
+        IRISegmentParameter iriEqBySegment = iriService.getIRIEqBySegment(segmentLength);
+        return iriEqBySegment;
+    }
+
+
+//    @RequestMapping("/getAll")
+//    public List<DataItem> getAll(){
+//        return dataItemService.getAll();
+//    }
 
 }

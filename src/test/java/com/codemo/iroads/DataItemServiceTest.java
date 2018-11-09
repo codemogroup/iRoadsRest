@@ -19,6 +19,6 @@ public class DataItemServiceTest {
     @Test
     public void getJourneySegmentsTest(){
 //        lat=6.839059600893724&lon=79.97806549072267
-        dataItemService.getJourneySegments("3599880608007481537609916152",6.839059600893724,79.97806549072267, 1.0);
+        dataItemService.getJourneySegments("3599880608007481537609916152",6.839059600893724,79.97806549072267, 1.0,100);
     }
 }

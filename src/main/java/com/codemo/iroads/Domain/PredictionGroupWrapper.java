@@ -1,13 +1,9 @@
 package com.codemo.iroads.Domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class PredictionGroupWrapper {
     private String predictionGroup;
-
-    public String getPredictionGroup() {
-        return predictionGroup;
-    }
-
-    public void setPredictionGroup(String predictionGroup) {
-        this.predictionGroup = predictionGroup;
-    }
 }

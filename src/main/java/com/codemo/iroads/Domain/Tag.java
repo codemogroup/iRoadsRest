@@ -1,5 +1,9 @@
 package com.codemo.iroads.Domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class Tag {
 
     private String journeyID;
@@ -11,46 +15,6 @@ public class Tag {
     private String tagType;
 
     private String time;
-
-    public String getJourneyID() {
-        return journeyID;
-    }
-
-    public void setJourneyID(String journeyID) {
-        this.journeyID = journeyID;
-    }
-
-    public String getLat() {
-        return lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    public String getLon() {
-        return lon;
-    }
-
-    public void setLon(String lon) {
-        this.lon = lon;
-    }
-
-    public String getTagType() {
-        return tagType;
-    }
-
-    public void setTagType(String tagType) {
-        this.tagType = tagType;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     @Override
     public String toString() {

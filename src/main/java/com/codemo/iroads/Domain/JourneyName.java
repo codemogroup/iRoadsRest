@@ -4,9 +4,12 @@ package com.codemo.iroads.Domain;
 import com.couchbase.client.java.repository.annotation.Field;
 
 import com.couchbase.client.java.repository.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 @Document
+@Getter @Setter
 public class JourneyName {
 
     @Id
@@ -27,53 +30,6 @@ public class JourneyName {
     @Field
     private String dataType;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDataType() {
-        return dataType;
-    }
-
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
-    public String getJourneyID() {
-        return journeyID;
-    }
-
-    public void setJourneyID(String journeyID) {
-        this.journeyID = journeyID;
-    }
-
-    public String getJourneyName() {
-        return journeyName;
-    }
-
-    public void setJourneyName(String journeyName) {
-        this.journeyName = journeyName;
-    }
-
-    public String getStartLat() {
-        return startLat;
-    }
-
-    public void setStartLat(String startLat) {
-        this.startLat = startLat;
-    }
-
-    public String getStartLon() {
-        return startLon;
-    }
-
-    public void setStartLon(String startLon) {
-        this.startLon = startLon;
-    }
 
     @Override
     public String toString() {

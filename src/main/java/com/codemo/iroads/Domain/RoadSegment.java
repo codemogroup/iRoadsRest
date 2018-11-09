@@ -1,7 +1,13 @@
 package com.codemo.iroads.Domain;
 
+import com.codemo.iroads.Service.IRIService;
+import com.codemo.iroads.Service.IRIServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 
+@Component
 public class RoadSegment {
 
     double length;
@@ -129,5 +135,19 @@ public class RoadSegment {
         }
 
         return aboveThreshold;
+    }
+
+    public double getIRI(IRIService iriService,int segmentLength) {
+        IRISegmentParameter iriEqBySegment = iriService.getIRIEqBySegment(segmentLength);
+
+        int X = getAboveThreshold(iriEqBySegment.getThreshold());
+        double m = iriEqBySegment.getM();
+        double c = iriEqBySegment.getC();
+
+        //  y=mx + c  (iri equation)
+        double y = m*X + c ;
+
+
+        return y;
     }
 }

@@ -346,6 +346,8 @@ public class Util {
         JsonObject metghod15=JsonObject.create().put("function","get predicted data group names").put("path","/getPredictionGroups");
         JsonObject metghod16=JsonObject.create().put("function","get predicted data by group name").put("path","/getPredictionsByGroup?groupID=groupId");
         JsonObject metghod17=JsonObject.create().put("function","get all predicted data").put("path","/getAllPredictions");
+        JsonObject metghod18=JsonObject.create().put("function","get all IRI equation parameters").put("path","/getAllIriEq");
+        JsonObject metghod19=JsonObject.create().put("function","get IRI equation parameters by segment lenght").put("path","/getIriEqBySegment?segmentLength=length");
 
         msg.add(metghod1);
         msg.add(metghod2);
@@ -364,6 +366,8 @@ public class Util {
         msg.add(metghod15);
         msg.add(metghod16);
         msg.add(metghod17);
+        msg.add(metghod18);
+        msg.add(metghod19);
 
         return msg;
     }
