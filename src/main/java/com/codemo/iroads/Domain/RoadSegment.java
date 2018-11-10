@@ -137,8 +137,7 @@ public class RoadSegment {
         return aboveThreshold;
     }
 
-    public double getIRI(IRIService iriService,int segmentLength) {
-        IRISegmentParameter iriEqBySegment = iriService.getIRIEqBySegment(segmentLength);
+    public double getIRI(IRISegmentParameter iriEqBySegment ,int segmentLength) {
 
         int X = getAboveThreshold(iriEqBySegment.getThreshold());
         double m = iriEqBySegment.getM();

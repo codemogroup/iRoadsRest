@@ -252,6 +252,8 @@ public class DataItemServiceImpl implements DataItemService {
 
     private List<SegmentInfo> finalizeSegments(List<RoadSegment> segments,double fullJourneyMeanAccelerationY,double threshold,int segmentLength){
 
+        IRISegmentParameter iriEqBySegment = iriService.getIRIEqBySegment(segmentLength);
+
         List<SegmentInfo> segmentInfoList=new ArrayList<>();
         for(RoadSegment segment:segments){
             SegmentInfo segmentInfo=new SegmentInfo();
@@ -290,12 +292,10 @@ public class DataItemServiceImpl implements DataItemService {
             segmentInfo.setAvgRmsAccel(segment.getAverageAccelerationRms());
 
             // set iri
-            segmentInfo.setIri(segment.getIRI(iriService, segmentLength));
+            segmentInfo.setIri(segment.getIRI(iriEqBySegment, segmentLength));
 
             ////adding to list
             segmentInfoList.add(segmentInfo);
-
-
 
         }
         return segmentInfoList;
