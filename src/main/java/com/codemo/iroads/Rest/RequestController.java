@@ -142,6 +142,12 @@ public class RequestController {
         return iriEqBySegment;
     }
 
+    @RequestMapping("/getTagsWithNames")
+    public List<TagsWithName> getTagsWithNames(){
+        List<TagsWithName> tagsWithNames = nonEntityClassService.getTagsWithNames();
+        return tagsWithNames;
+    }
+
 
 //    @RequestMapping("/getAll")
 //    public List<DataItem> getAll(){

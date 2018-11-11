@@ -24,5 +24,7 @@ public interface NonEntityClassService {
 
     List<NameID> getAllTaggedJourneys();
 
+    List<TagsWithName> getTagsWithNames();
+
 
 }

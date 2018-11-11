@@ -6,6 +6,7 @@ import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,5 +69,23 @@ public class NonEntityClassServiceImpl implements NonEntityClassService {
     public List<NameID> getAllTaggedJourneys() {
         List<NameID> allTaggedJourneys = nonEntityClassDao.getAllTaggedJourneys();
         return allTaggedJourneys;
+    }
+
+    @Override
+    public List<TagsWithName> getTagsWithNames() {
+
+        List<NameID> allTaggedJourneys = getAllTaggedJourneys();
+
+        List<TagsWithName> tagsWithNames=new ArrayList<>();
+
+        for (NameID ni:allTaggedJourneys){
+
+            List<TagPoint> tagsPointsByJourneyID = nonEntityClassDao.getTagsPointsByJourneyID(ni.getJourneyID());
+            TagsWithName tagsWithName = new TagsWithName(ni.getJourneyName(), ni.getJourneyID(), tagsPointsByJourneyID);
+            tagsWithNames.add(tagsWithName);
+
+        }
+
+        return tagsWithNames;
     }
 }

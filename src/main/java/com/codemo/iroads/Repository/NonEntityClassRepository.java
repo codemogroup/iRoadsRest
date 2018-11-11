@@ -40,6 +40,11 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getEntityArray(query,Tag.class);
     }
 
+    public List<TagPoint> getTagsPointsByJourneyID(String journeyID){
+        String query="select lat,lon,tagType from iroads where dataType='tag' and journeyID='"+journeyID +"'";
+        return getEntityArray(query,TagPoint.class);
+    }
+
     public List<LatLonTag> getAllTags() {
         String query="select lat,lon,tagType from iroads where dataType='tag'";
         return getEntityArray(query, LatLonTag.class);
