@@ -35,8 +35,6 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         String query="select journeyID,dataType,journeyName,startLat,startLon from iroads where dataType ='trip_names' and journeyName='"+latestJourneyName+"'";
         return getEntityArray(query,JourneyName.class);
     }
-
-
     public List<Tag> getTagsByJourneyID(String journeyID){
         String query="select journeyID,lat,lon,tagType,time from iroads where dataType='tag' and journeyID='"+journeyID +"'";
         return getEntityArray(query,Tag.class);
@@ -65,6 +63,11 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
     public List<PredictionGroupWrapper> getPredictionGroups(){
         String query="select distinct predictionGroup from iroads where dataType='prediction'";
         return getEntityArray(query, PredictionGroupWrapper.class);
+    }
+
+    public List<NameID> getAllTaggedJourneys(){
+        String query="select journeyName,journeyID from iroads i where i.dataType='trip_names' and i.journeyID in (select distinct raw journeyID from iroads where dataType='tag');";
+        return getEntityArray(query,NameID.class);
     }
 
 }

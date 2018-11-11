@@ -91,6 +91,11 @@ public class RequestController {
         return nonEntityClassService.getTaggedJourneyIDs();
     }
 
+    @RequestMapping("/getTaggedNames")
+    public List<NameID> getAllTaggedJourneys(){
+        return nonEntityClassService.getAllTaggedJourneys();
+    }
+
     @RequestMapping("/getAllTags")
     public List<LatLonTag> getAllTags(){
         return nonEntityClassService.getAllTaggs();

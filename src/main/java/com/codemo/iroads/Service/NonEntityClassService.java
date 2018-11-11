@@ -1,9 +1,6 @@
 package com.codemo.iroads.Service;
 
-import com.codemo.iroads.Domain.JourneyIDNamePair;
-import com.codemo.iroads.Domain.LatLonTag;
-import com.codemo.iroads.Domain.Summary;
-import com.codemo.iroads.Domain.Tag;
+import com.codemo.iroads.Domain.*;
 
 import java.util.List;
 
@@ -24,6 +21,8 @@ public interface NonEntityClassService {
     List<JourneyIDNamePair> getTaggedJourneyIDs();
 
     Summary getSummary();
+
+    List<NameID> getAllTaggedJourneys();
 
 
 }
