@@ -88,4 +88,10 @@ public class NonEntityClassServiceImpl implements NonEntityClassService {
 
         return tagsWithNames;
     }
+
+    @Override
+    public List<ColorRange> getAllColorRanges() {
+        List<ColorRange> allColorRanges = nonEntityClassDao.getAllColorRanges();
+        return allColorRanges;
+    }
 }

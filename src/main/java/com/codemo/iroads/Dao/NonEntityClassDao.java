@@ -32,5 +32,7 @@ public interface NonEntityClassDao {
 
     List<TagPoint> getTagsPointsByJourneyID(String journeyID);
 
+    List<ColorRange> getAllColorRanges();
+
 
 }

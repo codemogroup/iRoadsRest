@@ -75,4 +75,9 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getEntityArray(query,NameID.class);
     }
 
+    public List<ColorRange> getAllColorRanges(){
+        String query="select dataType,rangeFor,ranges from iroads where dataType='color_range';";
+        return getEntityArray(query,ColorRange.class);
+    }
+
 }

@@ -67,4 +67,10 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
         return nonEntityClassRepository.getTagsPointsByJourneyID(journeyID);
     }
 
+    @Override
+    public List<ColorRange> getAllColorRanges() {
+        List<ColorRange> allColorRanges = nonEntityClassRepository.getAllColorRanges();
+        return allColorRanges;
+    }
+
 }

@@ -26,5 +26,6 @@ public interface NonEntityClassService {
 
     List<TagsWithName> getTagsWithNames();
 
+    List<ColorRange> getAllColorRanges();
 
 }

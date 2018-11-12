@@ -148,6 +148,11 @@ public class RequestController {
         return tagsWithNames;
     }
 
+    @RequestMapping("/getColorRanges")
+    public List<ColorRange> getAllColorRanges(){
+        List<ColorRange> allColorRanges = nonEntityClassService.getAllColorRanges();
+        return allColorRanges;
+    }
 
 //    @RequestMapping("/getAll")
 //    public List<DataItem> getAll(){
