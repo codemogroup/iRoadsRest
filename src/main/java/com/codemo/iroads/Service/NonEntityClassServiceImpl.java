@@ -86,6 +86,10 @@ public class NonEntityClassServiceImpl implements NonEntityClassService {
 
         }
 
+        //get manual tags
+        List<TagsWithName> manualTags = nonEntityClassDao.getManualTags();
+        tagsWithNames.addAll(manualTags);
+
         return tagsWithNames;
     }
 

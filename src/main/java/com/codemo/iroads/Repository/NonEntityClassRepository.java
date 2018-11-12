@@ -80,4 +80,8 @@ public class NonEntityClassRepository extends AbstractN1qlRunner{
         return getEntityArray(query,ColorRange.class);
     }
 
+    public List<TagsWithName> getManualTags() {
+        String query="select journeyID,journeyName,tags from iroads where dataType='manual_tag';";
+        return getEntityArray(query,TagsWithName.class);
+    }
 }

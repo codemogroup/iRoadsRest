@@ -34,5 +34,5 @@ public interface NonEntityClassDao {
 
     List<ColorRange> getAllColorRanges();
 
-
+    List<TagsWithName> getManualTags();
 }

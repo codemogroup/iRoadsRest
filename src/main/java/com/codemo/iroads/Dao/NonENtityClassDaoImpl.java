@@ -73,4 +73,10 @@ public class NonENtityClassDaoImpl implements NonEntityClassDao {
         return allColorRanges;
     }
 
+    @Override
+    public List<TagsWithName> getManualTags() {
+        List<TagsWithName> manualTags = nonEntityClassRepository.getManualTags();
+        return manualTags;
+    }
+
 }
