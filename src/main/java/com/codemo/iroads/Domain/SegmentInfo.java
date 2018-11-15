@@ -34,6 +34,8 @@ public class SegmentInfo {
 
     private double iri;
 
+    private double iri_ml;
+
     public void setAboveThreshold(int aboveThreshold) {
         this.aboveThreshold = aboveThreshold;
         if (length!=0){

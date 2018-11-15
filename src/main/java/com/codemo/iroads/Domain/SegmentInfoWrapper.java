@@ -39,6 +39,10 @@ public class SegmentInfoWrapper {
 
     private double minIri;
 
+    private double minIri_ml;
+
+    private double maxIri_ml;
+
     private String journeID;
 
     private Date startTime;

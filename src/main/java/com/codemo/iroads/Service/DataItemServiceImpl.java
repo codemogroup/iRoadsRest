@@ -5,8 +5,10 @@ import com.codemo.iroads.Dao.DataItemDao;
 import com.codemo.iroads.Domain.*;
 import com.codemo.iroads.Util.CSV_Writer;
 import com.codemo.iroads.Util.Util;
+import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.google.gson.Gson;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 /**
  * Created by dushan on 4/25/18.
@@ -154,6 +162,9 @@ public class DataItemServiceImpl implements DataItemService {
         double maxIri=segmentInfoList.get(0).getIri();
         double minIri=segmentInfoList.get(0).getIri();
 
+        double maxIri_ml=segmentInfoList.get(0).getIri_ml();
+        double minIri_ml=segmentInfoList.get(0).getIri_ml();
+
         for (SegmentInfo segmentInfo:segmentInfoList){
             //avg speed
             if (maxAvgSpeed<segmentInfo.getAvgSpeed()){
@@ -210,6 +221,22 @@ public class DataItemServiceImpl implements DataItemService {
             if (minIri>segmentInfo.getIri()){
                 minIri=segmentInfo.getIri();
             }
+
+            //iri
+            if (maxIri<segmentInfo.getIri()){
+                maxIri=segmentInfo.getIri();
+            }
+            if (minIri>segmentInfo.getIri()){
+                minIri=segmentInfo.getIri();
+            }
+
+            //iri_ml
+            if (maxIri_ml<segmentInfo.getIri_ml()){
+                maxIri_ml=segmentInfo.getIri_ml();
+            }
+            if (minIri_ml>segmentInfo.getIri_ml()){
+                minIri_ml=segmentInfo.getIri_ml();
+            }
         }
 
         segmentInfoWrapper.setMinAvgSpeed(minAvgSpeed);
@@ -233,6 +260,9 @@ public class DataItemServiceImpl implements DataItemService {
         segmentInfoWrapper.setMinIri(minIri);
         segmentInfoWrapper.setMaxIri(maxIri);
 
+        segmentInfoWrapper.setMinIri_ml(minIri_ml);
+        segmentInfoWrapper.setMaxIri_ml(maxIri_ml);
+
         segmentInfoWrapper.setJourneID(journeyID);
 
         long journeyStartTimeMS = segments.get(0).getStart().getTime();
@@ -254,6 +284,14 @@ public class DataItemServiceImpl implements DataItemService {
 
         IRISegmentParameter iriEqBySegment = iriService.getIRIEqBySegment(segmentLength);
 
+        List<Double> mlIri=null;
+        try {
+            mlIri = getMlIri(segments, iriEqBySegment, segmentLength);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        int index=0;
         List<SegmentInfo> segmentInfoList=new ArrayList<>();
         for(RoadSegment segment:segments){
             SegmentInfo segmentInfo=new SegmentInfo();
@@ -294,6 +332,11 @@ public class DataItemServiceImpl implements DataItemService {
             // set iri
             segmentInfo.setIri(segment.getIRI(iriEqBySegment, segmentLength));
 
+            // set iri_ml
+            if (mlIri!=null) {
+                segmentInfo.setIri_ml(mlIri.get(index++));
+            }
+
             ////adding to list
             segmentInfoList.add(segmentInfo);
 
@@ -301,6 +344,78 @@ public class DataItemServiceImpl implements DataItemService {
         return segmentInfoList;
 
     }
+
+    private List<Double> getMlIri(List<RoadSegment> segments,IRISegmentParameter iriSegmentParameter,int segmentLength) {
+
+        JsonArray array=JsonArray.create();
+        for(RoadSegment segment:segments){
+            JsonObject iriMlPostObj = segment.getIRIMlPostObj(iriSegmentParameter, segmentLength);
+            array.add(iriMlPostObj);
+        }
+
+        JsonObject obj=JsonObject.create();
+        obj.put("array",array);
+        obj.put("segment",Integer.toString(segmentLength));
+
+        HttpResponse dataFromPost = getDataFromPost(obj);
+
+
+        try {
+            InputStream content = dataFromPost.getEntity().getContent();
+
+            BufferedReader r = new BufferedReader(new InputStreamReader(content));
+            ArrayList<String> resultLines = new ArrayList<String>();
+            String line;
+            while ((line=r.readLine()) != null) {
+                resultLines.add(line);
+            }
+
+            ArrayList<Double> resultList = convertLineToArray(resultLines.get(0));
+            return resultList;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    private HttpResponse getDataFromPost(JsonObject obj){
+        String       postUrl       = "http://iroads.projects.mrt.ac.lk:8085/getIri";// put in your url
+        Gson         gson          = new Gson();
+        CloseableHttpClient httpClient    = HttpClientBuilder.create().build();
+        HttpPost     post          = new HttpPost(postUrl);
+        StringEntity postingString = null;//gson.tojson() converts your pojo to json
+        try {
+            postingString = new StringEntity(obj.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        post.setEntity(postingString);
+        post.setHeader("Content-type", "application/json");
+        try {
+            HttpResponse  response = httpClient.execute(post);
+            return response;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<Double> convertLineToArray(String stringArray){
+        //remove brackets
+        String withoutBrackets=stringArray.substring(1, stringArray.length() - 1);
+        String[] split = withoutBrackets.split(",");
+
+        ArrayList<Double> converted=new ArrayList<>();
+
+        for(String s:split){
+            converted.add(Double.parseDouble(s));
+        }
+        return converted;
+    }
+
 
     private double getDifference(DataItem di,double lat, double lon){
         double diff=Math.abs(di.getLat()-lat)+Math.abs(di.getLon()-lon);

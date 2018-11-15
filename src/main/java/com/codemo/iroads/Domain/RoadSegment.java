@@ -1,8 +1,6 @@
 package com.codemo.iroads.Domain;
 
-import com.codemo.iroads.Service.IRIService;
-import com.codemo.iroads.Service.IRIServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.couchbase.client.java.document.json.JsonObject;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -148,5 +146,13 @@ public class RoadSegment {
 
 
         return y;
+    }
+
+    public JsonObject getIRIMlPostObj(IRISegmentParameter iriEqBySegment, int segmentLength) {
+        int calcSpikesY = getAboveThreshold(iriEqBySegment.getThreshold());
+        JsonObject obj=JsonObject.create();
+        obj.put("calcSpikesY",calcSpikesY);
+        obj.put("gpsSpeed",getAverageSpeed());
+        return obj;
     }
 }
